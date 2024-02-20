@@ -1,0 +1,53 @@
+#manage {
+    padding: 5rem 0;
+
+    @include xl {
+        padding-top: 100px;
+    }
+    
+    .container {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        @include xl {
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: start;
+        }
+
+        img {
+            display: none;
+
+            @include md {
+                display: flex;
+            }
+        }
+
+        .text-box{
+            margin-top: 100px;
+
+            h2 {
+                margin-bottom: 40px;
+            }
+
+            i{
+                color: $theme;
+                margin: 0 10px;
+            }
+
+            a{
+                margin-top: 40px;
+
+                @include xl {
+                    display: inline-block;
+                }
+
+                i{
+                    color: #fff;
+                }
+            }
+        }
+    }
+}

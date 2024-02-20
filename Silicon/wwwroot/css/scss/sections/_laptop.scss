@@ -1,0 +1,78 @@
+#laptop {
+    display: flex;
+    justify-content: center;
+    position: relative;
+    height: 50dvw;
+
+    .h1-white {
+        z-index: 0;
+        margin-left: 30px;
+        margin-top: 30px;
+        opacity: 0;
+
+        @include md {
+            @include h2;
+            color: white;
+            opacity: 100;
+        }
+
+        @include lg {
+            @include h1;
+            color: white;        
+        }
+    }
+
+    .h1-black {
+        margin-left: 20px;
+        margin-top: 30px;
+        opacity: 0;
+
+        @include md {
+            @include h2;
+            opacity: 100;
+        }
+
+        @include lg {
+            @include h1;
+        }
+    }
+
+    .dark {
+        position: absolute;
+        width: 50dvw;
+        height: 100%;
+        left: 0%;
+        top: 0%;
+        background-color: $gray-900;
+    }
+
+    .slider {
+        position: absolute;
+        left: 50dvw;
+        width: 3px;
+        height: 100%;
+        z-index: 1;
+        background-color: $theme;
+        transform: translateX(-50%);
+
+        i {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translateX(-50%);
+            background-color: $theme;
+            color: white;
+            border-radius: 15px;
+            padding: 3px;
+            font-size: 14px;
+        }
+    }
+
+    img {
+        position: absolute;
+        width: 50dvw;
+        top: 10dvw;
+        left: 25dvw;
+        z-index: 0;
+    }
+}

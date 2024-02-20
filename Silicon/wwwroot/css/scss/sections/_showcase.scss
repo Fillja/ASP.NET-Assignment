@@ -1,0 +1,79 @@
+#showcase {
+    padding-bottom: 80px;
+
+        display: flex;
+        justify-content: space-between;
+
+     img {
+        display: none;
+
+        @include xl {
+            display: block;
+        }
+     }
+
+     .container {
+        display: flex;
+        justify-content: space-between;
+        
+        .content {
+            margin-top: 0px;
+            text-align: center;
+
+            @include lg {
+                margin-top: 100px;
+                text-align: left;
+            }
+
+            h1 {
+                @include h2;
+
+                @include lg {
+                    @include d4;
+                }
+            }
+
+            p {
+                margin: 20px 0 40px 0;
+                @include text-m;
+
+                @include lg {
+                    margin: 40px 0 50px 0;
+                    @include text-lg;
+                }
+            }
+        }
+
+        .btn-theme-s {
+            display: block;
+
+            @include xl {
+                display: inline-block;
+            }
+        }
+
+        h6 {
+            margin: 150px 0 30px 0;
+            display: none;
+
+            @include lg {
+                margin: 100px 0 30px 0;
+                display: flex;
+            }
+        }
+
+        .brands {
+            display: none;
+            gap: 30px;
+
+            @include lg {
+                display: flex;
+            }
+
+            img {
+                margin-right: 10px;
+                width: 120px;
+            }
+        }
+    }
+}

@@ -1,0 +1,97 @@
+#newsletter {
+    padding: 6rem 0;
+    background-color: $gray-100;
+
+    .container {
+        @include xxl {
+            max-width: 968px;
+        }
+
+        .title-box {
+            display: flex;
+            gap: 2rem;
+            padding-bottom: 3rem;
+            text-align: center;
+
+            
+            @include md {
+                text-align: start;
+            }
+
+            img {
+                display: none;
+
+                @include md {
+                    display: flex;
+                }
+            }
+        }
+
+        .signup {
+            display: block;
+            text-align: center;
+            padding-bottom: 3rem;
+            
+            @include md {
+                text-align: start;
+                display: flex;
+            }
+
+            .content {
+                display: grid;
+                grid-template-columns: 1fr;
+
+                @include md {
+                    grid-template-columns: 1fr 1fr;
+                }
+
+                @include lg {
+                    grid-template-columns: 1fr 1fr 1fr;
+                }
+
+                .newsletter-boxes{
+                    padding-left: 0;
+                    
+                    @include md {
+                        padding-left: 4rem;
+                    }
+                    
+                    input {
+                        margin-right: 0.5rem;
+                    }
+                }
+            }
+        }
+
+        .subscribe {
+            display: grid;
+            grid-template-rows: 1fr 1fr;
+            gap: 1rem;
+            padding-bottom: 0.5rem;
+
+            @include md {
+                grid-template-columns: 1fr auto;
+            }
+
+            .input-div{
+                display: flex;
+                border: solid 1px $gray-400;
+                border-radius: 10px;
+                padding: 0.7rem 1rem;
+                background-color: white;
+
+                input {
+                    margin-left: 0.5rem;
+                    width: 100%;
+                    border: none;
+                }
+
+                i {
+                    padding-top: 0.3rem;
+                    font-size: 18px;
+                    color: $gray-600;
+                }
+            }
+        }
+    }
+}

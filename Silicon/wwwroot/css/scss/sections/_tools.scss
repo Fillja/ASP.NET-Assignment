@@ -1,0 +1,53 @@
+#tools {
+    padding: 6rem 0;
+
+    .container {
+
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+
+        .tool-title {
+            max-width: 50dvw;
+            padding-bottom: 5rem;
+
+            #light-subtitle {
+                @include text-lg;
+                color: $gray-600;
+                margin-top: 1rem;
+            }
+        }
+
+        .content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 5rem;
+
+            @include md {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            @include lg {
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+            }
+
+            .tool-box {
+                padding: 1rem;
+                text-align: start;
+                text-decoration: none;
+                color: $gray-700;
+
+                &:hover {
+                    opacity: 0.75;
+                    box-shadow: 4px 4px 4px 4px $gray-300;
+                    border-radius: 0.5rem;
+                }
+
+                img {
+                    padding-bottom: 1rem;
+                }
+            }
+        }
+    }
+}

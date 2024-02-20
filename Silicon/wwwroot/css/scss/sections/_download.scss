@@ -1,0 +1,64 @@
+#download {
+    background-color: $gray-100;
+
+    .container {
+        display: flex;
+        flex-direction: column;
+        gap: 15rem;
+        background-color: $gray-200;
+        padding: 6rem 0;
+
+        @include xl {
+            flex-direction: row;
+        }
+
+        .screen-image {
+            width: auto;
+            height: 50%;
+        }
+
+        h1 {
+            text-align: center;
+
+            @include xl {
+                text-align: start;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: $gray-700;
+
+            &:hover {
+                opacity: 0.5;
+            }
+
+            .app-box{
+                display: flex;
+                gap: 5rem;
+                padding-bottom: 2rem;
+                justify-content: center;
+    
+                @include xl {
+                    justify-content: start;
+                }
+        
+                .app-name {
+                    color: $gray-600;
+                    margin-top: 2rem;
+                    margin-bottom: -0.3rem;
+                }
+        
+                i {
+                    color: $warning;
+                    font-size: 10px;
+                    margin-right: 3px;
+                }
+        
+                img {
+                    padding-top: 6rem;
+                }
+            }
+        }
+    }
+}

@@ -1,0 +1,38 @@
+#sign-up{
+    padding: 6rem 0;
+
+    .container{
+        max-width: 35rem;
+
+        label {
+            color: $gray-900;
+        }
+
+        .create-form-name{
+            display: grid;
+            margin-bottom: 2rem;
+            grid-template-columns: 1fr 1fr;
+            gap: 1.5rem;
+        }
+
+        .input-box{
+            display: block;
+            padding: 0.8rem;
+            border: 1px $gray-400 solid;
+            border-radius: 0.3rem;
+            width: 100%;
+        }
+
+        .create-form-box {
+            margin-bottom: 2rem;
+        }
+
+        .input-checkbox{
+            margin-left: 1rem;
+        }
+
+        .btn-theme-s{
+            margin-top: 2rem;
+        }
+    }
+}
