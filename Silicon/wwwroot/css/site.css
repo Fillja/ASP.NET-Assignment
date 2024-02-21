@@ -1003,11 +1003,35 @@ footer .container .social-media {
 #sign-up .container label {
   color: #0B0F19;
 }
+#sign-up .container .field-validation-error {
+  display: block;
+  color: #EF4444;
+}
 #sign-up .container .create-form-name {
-  display: grid;
+  display: block;
+}
+@media (min-width: 768px) {
+  #sign-up .container .create-form-name {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+}
+#sign-up .container .create-form-name .create-form-name-box {
+  position: relative;
   margin-bottom: 2rem;
-  grid-template-columns: 1fr 1fr;
-  gap: 1.5rem;
+}
+#sign-up .container .create-form-name .create-form-name-box span {
+  display: block;
+  color: #EF4444;
+  position: static;
+  right: 0;
+}
+@media (min-width: 768px) {
+  #sign-up .container .create-form-name .create-form-name-box span {
+    position: absolute;
+    display: inline;
+  }
 }
 #sign-up .container .input-box {
   display: block;
@@ -1018,10 +1042,32 @@ footer .container .social-media {
 }
 #sign-up .container .create-form-box {
   margin-bottom: 2rem;
+  position: relative;
+}
+#sign-up .container .create-form-box .password-validation {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 14px !important;
+  margin: 1rem 0;
+}
+#sign-up .container .create-form-box span {
+  display: block;
+  color: #EF4444;
+  position: static;
+  right: 0;
+}
+@media (min-width: 768px) {
+  #sign-up .container .create-form-box span {
+    position: absolute;
+    display: inline;
+  }
 }
 #sign-up .container .input-checkbox {
   margin-left: 1rem;
 }
 #sign-up .container .btn-theme-s {
   margin-top: 2rem;
+  width: 100%;
 }
