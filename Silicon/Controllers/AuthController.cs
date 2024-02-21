@@ -1,6 +1,16 @@
-﻿namespace Silicon.Controllers
+﻿using Microsoft.AspNetCore.Mvc;
+
+namespace Silicon.Controllers;
+
+public class AuthController : Controller
 {
-    public class AuthController
+    public IActionResult SignUp()
     {
+        return View();
+    }
+
+    public IActionResult SignIn()
+    {
+        return View();
     }
 }
