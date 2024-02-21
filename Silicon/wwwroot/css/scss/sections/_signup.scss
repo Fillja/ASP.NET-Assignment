@@ -1,21 +1,46 @@
-#sign-up{
+#sign-up {
     padding: 6rem 0;
 
-    .container{
+    .container {
         max-width: 35rem;
 
         label {
             color: $gray-900;
         }
 
-        .create-form-name{
-            display: grid;
-            margin-bottom: 2rem;
-            grid-template-columns: 1fr 1fr;
-            gap: 1.5rem;
+        .field-validation-error{
+            display: block;
+            color: $danger;
         }
 
-        .input-box{
+        .create-form-name {
+            display: block;
+
+            @include md {
+                display: grid;
+                grid-template-columns: 1fr 1fr;
+                gap: 1.5rem;
+            }
+
+            .create-form-name-box {
+                position: relative;
+                margin-bottom: 2rem;
+
+                span {
+                    display: block;
+                    color: $danger;
+                    position: static;
+                    right: 0;
+
+                    @include md {
+                        position: absolute;
+                        display: inline;
+                    }
+                }
+            }
+        }
+
+        .input-box {
             display: block;
             padding: 0.8rem;
             border: 1px $gray-400 solid;
@@ -25,14 +50,33 @@
 
         .create-form-box {
             margin-bottom: 2rem;
+            position: relative;
+
+            .password-validation {
+                @include text-s;
+                margin: 1rem 0;
+            }
+
+            span {
+                display: block;
+                color: $danger;
+                position: static;
+                right: 0;
+
+                @include md {
+                    position: absolute;
+                    display: inline;
+                }
+            }
         }
 
-        .input-checkbox{
+        .input-checkbox {
             margin-left: 1rem;
         }
 
-        .btn-theme-s{
+        .btn-theme-s {
             margin-top: 2rem;
+            width: 100%;
         }
     }
 }

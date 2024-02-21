@@ -1,11 +1,28 @@
 #sign-in {
     padding: 6rem 0;
-    
+
     .container {
         max-width: 35rem;
 
-        form{
+        form {
             padding-top: 0.5rem;
+
+            .form-box {
+                position: relative; 
+
+                span {
+                    display: block;
+                    color: $danger;
+                    position: static;
+                    right: 0;
+
+                    @include md {
+                        position: absolute;
+                        display: inline;
+                    }
+                }
+            }
+
 
             .block-input {
                 display: block;
@@ -25,10 +42,11 @@
             }
         }
 
-        .form-button{
+        .form-button {
             text-align: center;
 
             .btn-theme {
+                width: 100%;
                 padding: 1rem 1rem;
                 margin: 1rem 0;
             }
