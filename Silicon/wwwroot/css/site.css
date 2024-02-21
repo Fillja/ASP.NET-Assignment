@@ -972,6 +972,21 @@ footer .container .social-media {
 #sign-in .container form {
   padding-top: 0.5rem;
 }
+#sign-in .container form .form-box {
+  position: relative;
+}
+#sign-in .container form .form-box span {
+  display: block;
+  color: #EF4444;
+  position: static;
+  right: 0;
+}
+@media (min-width: 768px) {
+  #sign-in .container form .form-box span {
+    position: absolute;
+    display: inline;
+  }
+}
 #sign-in .container form .block-input {
   display: block;
   width: 100%;
@@ -990,6 +1005,7 @@ footer .container .social-media {
   text-align: center;
 }
 #sign-in .container .form-button .btn-theme {
+  width: 100%;
   padding: 1rem 1rem;
   margin: 1rem 0;
 }
