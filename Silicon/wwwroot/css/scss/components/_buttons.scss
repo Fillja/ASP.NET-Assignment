@@ -51,6 +51,19 @@
     } 
 }
 
+.btn-transparent {
+    @include button;
+    background: transparent;
+    color: $gray-900;
+    border: none;
+
+    &:hover {
+        text-decoration: none;
+        background: $gray-700;
+        color: $white;
+    }
+}
+
 .btn-switch {
     display: flex;
     align-items: center;
