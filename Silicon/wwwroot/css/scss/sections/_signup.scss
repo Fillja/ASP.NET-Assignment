@@ -8,9 +8,15 @@
             color: $gray-900;
         }
 
-        .field-validation-error{
+
+        .input-validation-error {
+            background-color: #ffd6d6;
+        }
+
+        .field-validation-error {
             display: block;
             color: $danger;
+            border-color: $danger;
         }
 
         .create-form-name {

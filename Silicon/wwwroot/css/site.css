@@ -1038,9 +1038,13 @@ footer .container .social-media {
 #sign-up .container label {
   color: #0B0F19;
 }
+#sign-up .container .input-validation-error {
+  background-color: #ffd6d6;
+}
 #sign-up .container .field-validation-error {
   display: block;
   color: #EF4444;
+  border-color: #EF4444;
 }
 #sign-up .container .create-form-name {
   display: block;
