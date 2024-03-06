@@ -2,6 +2,15 @@
     padding: 6rem 0;
     background-color: $gray-100;
 
+    .input-validation-error {
+        background-color: #fef1f1
+    }
+
+    .field-validation-error {
+        display: block;
+        color: $danger;
+    }
+
     .container {
         @include xxl {
             max-width: 968px;
@@ -13,7 +22,7 @@
             padding-bottom: 3rem;
             text-align: center;
 
-            
+
             @include md {
                 text-align: start;
             }
@@ -31,7 +40,7 @@
             display: block;
             text-align: center;
             padding-bottom: 3rem;
-            
+
             @include md {
                 text-align: start;
                 display: flex;
@@ -49,13 +58,13 @@
                     grid-template-columns: 1fr 1fr 1fr;
                 }
 
-                .newsletter-boxes{
+                .newsletter-boxes {
                     padding-left: 0;
-                    
+
                     @include md {
                         padding-left: 4rem;
                     }
-                    
+
                     input {
                         margin-right: 0.5rem;
                     }
@@ -73,7 +82,7 @@
                 grid-template-columns: 1fr auto;
             }
 
-            .input-div{
+            .input-div {
                 display: flex;
                 border: solid 1px $gray-400;
                 border-radius: 10px;

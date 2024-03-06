@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Silicon.Models;
+namespace Infrastructure.Models.Auth;
 
 public class SignInFormModel
 {
@@ -15,5 +15,5 @@ public class SignInFormModel
     public string Password { get; set; } = null!;
 
     [Display(Name = "Remember me", Order = 2)]
-    public bool Remember {  get; set; } = false;
+    public bool Remember { get; set; } = false;
 }

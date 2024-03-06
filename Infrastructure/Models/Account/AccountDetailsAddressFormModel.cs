@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Silicon.Models;
+namespace Infrastructure.Models.Account;
 
 public class AccountDetailsAddressFormModel
 {

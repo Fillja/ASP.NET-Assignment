@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Silicon.ViewModels;
+using Silicon.ViewModels.Auth;
 
 namespace Silicon.Controllers;
 

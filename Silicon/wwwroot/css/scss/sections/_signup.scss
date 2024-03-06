@@ -10,13 +10,12 @@
 
 
         .input-validation-error {
-            background-color: #ffd6d6;
+            background-color: #fef1f1
         }
 
         .field-validation-error {
             display: block;
             color: $danger;
-            border-color: $danger;
         }
 
         .create-form-name {

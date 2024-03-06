@@ -1,7 +1,7 @@
-﻿using Silicon.Helpers;
+﻿using Infrastructure.Helpers;
 using System.ComponentModel.DataAnnotations;
 
-namespace Silicon.Models
+namespace Infrastructure.Models.Auth
 {
     public class SignUpFormModel
     {

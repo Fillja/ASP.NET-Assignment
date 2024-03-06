@@ -4,11 +4,20 @@
     .container {
         max-width: 35rem;
 
+        .input-validation-error {
+            background-color: #fef1f1
+        }
+
+        .field-validation-error {
+            display: block;
+            color: $danger;
+        }
+
         form {
             padding-top: 0.5rem;
 
             .form-box {
-                position: relative; 
+                position: relative;
 
                 span {
                     display: block;

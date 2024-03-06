@@ -893,6 +893,13 @@ footer .container .social-media {
   padding: 6rem 0;
   background-color: #F3F6FF;
 }
+#newsletter .input-validation-error {
+  background-color: #fef1f1;
+}
+#newsletter .field-validation-error {
+  display: block;
+  color: #EF4444;
+}
 @media (min-width: 1400px) {
   #newsletter .container {
     max-width: 968px;
@@ -988,6 +995,13 @@ footer .container .social-media {
 #sign-in .container {
   max-width: 35rem;
 }
+#sign-in .container .input-validation-error {
+  background-color: #fef1f1;
+}
+#sign-in .container .field-validation-error {
+  display: block;
+  color: #EF4444;
+}
 #sign-in .container form {
   padding-top: 0.5rem;
 }
@@ -1039,12 +1053,11 @@ footer .container .social-media {
   color: #0B0F19;
 }
 #sign-up .container .input-validation-error {
-  background-color: #ffd6d6;
+  background-color: #fef1f1;
 }
 #sign-up .container .field-validation-error {
   display: block;
   color: #EF4444;
-  border-color: #EF4444;
 }
 #sign-up .container .create-form-name {
   display: block;

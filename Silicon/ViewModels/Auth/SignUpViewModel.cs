@@ -1,6 +1,6 @@
-﻿using Silicon.Models;
+﻿using Infrastructure.Models.Auth;
 
-namespace Silicon.ViewModels;
+namespace Silicon.ViewModels.Auth;
 
 public class SignUpViewModel
 {
