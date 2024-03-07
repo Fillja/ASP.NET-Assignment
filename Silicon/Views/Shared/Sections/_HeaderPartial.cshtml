@@ -1,10 +1,19 @@
-﻿<header>
+﻿@inject SignInManager<UserEntity> _signInManager
+
+<header>
     <div class="container">
         <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/logos/silicon-logo.svg" alt="logo"></a>
         <div id="menu">
             <nav>
                 <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Showcase</a>
-                <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="features">Features</a>
+                @if (_signInManager.IsSignedIn(User))
+                {
+                    <a class="menu-link" asp-controller="Courses" asp-action="Index">Courses</a>
+                }
+                else
+                {
+                    <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="features">Features</a>
+                }
                 <a class="menu-link" asp-controller="Contact" asp-action="Index" asp-fragment="contact">Contact</a>
             </nav>
         </div>
@@ -19,8 +28,16 @@
         </div>
 
         <div class="account-buttons">
-            <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
-            <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-solid fa-user"></i><span>Sign Up</span></a>
+            @if(_signInManager.IsSignedIn(User))
+            {
+                <a class="btn-theme" asp-controller="Account" asp-action="Details"><i class="fa-solid fa-user"></i><span>My Account</span></a>
+                @*<a class="btn-theme" asp-controller="Account" asp-action="Details"><img src=@Model.BasicForm.ProfileImage /></a>*@
+            }
+            else
+            {
+                <a class="btn-gray" asp-controller="Auth" asp-action="SignIn"><i class="fa-regular fa-right-to-bracket"></i><span>Sign In</span></a>
+                <a class="btn-theme" asp-controller="Auth" asp-action="SignUp"><i class="fa-solid fa-user"></i><span>Sign Up</span></a>
+            }
         </div>
 
     </div>

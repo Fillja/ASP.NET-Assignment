@@ -1,19 +1,33 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Infrastructure.Entities;
+using Infrastructure.Factories;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Mvc;
 using Silicon.ViewModels.Account;
 
 namespace Silicon.Controllers;
 
-public class AccountController : Controller
+[Authorize]
+public class AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, UserFactory userFactory, AddressFactory addressFactory) : Controller
 {
+    private readonly SignInManager<UserEntity> _signInManager = signInManager;
+    private readonly UserManager<UserEntity> _userManager = userManager;
+    private readonly UserFactory _userFactory = userFactory;
+    private readonly AddressFactory _addressFactory = addressFactory;
 
     [Route("/Details")]
     [HttpGet]
-    public IActionResult Details()
+    public async Task<IActionResult> Details()
     {
         var viewModel = new AccountDetailsViewModel();
+        var userEntity = await _userManager.GetUserAsync(User);
 
-        //viewmodel.BasicForm = _accountService.GetBasicForm()
-        //viewmodel.AddressForm = _accountService.GetAddressForm()
+        if(userEntity != null) 
+        {
+            viewModel.BasicForm = _userFactory.PopulateBasicForm(userEntity);
+            viewModel.AddressForm = _addressFactory.PopulateAddressForm(userEntity);
+        }
+
         return View(viewModel);
     }
 

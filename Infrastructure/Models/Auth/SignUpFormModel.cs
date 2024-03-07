@@ -15,7 +15,7 @@ namespace Infrastructure.Models.Auth
         [MinLength(2, ErrorMessage = "Last name is required")]
         public string LastName { get; set; } = null!;
 
-        [Display(Name = "Email address", Prompt = "Enter your Email address", Order = 2)]
+        [Display(Name = "Email address", Prompt = "Enter your email address", Order = 2)]
         [Required(ErrorMessage = "Email address is required.")]
         [RegularExpression("^[^@\\s]+@[^@\\s]+\\.[^@\\s]{2,}$", ErrorMessage = "Invalid email address.")]
         [DataType(DataType.EmailAddress)]
