@@ -1,6 +1,5 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Models.Account;
-using Infrastructure.Models;
 
 namespace Infrastructure.Factories;
 
@@ -19,5 +18,20 @@ public class AddressFactory
         };
 
         return model;
+    }
+
+    public AddressEntity PopulateAddressEntity(AccountDetailsAddressFormModel model)
+    {
+        var entity = new AddressEntity();
+
+        if (model != null)
+        {
+            entity.Addressline_1 = model.AddressLine1;
+            entity.Addressline_2 = model.AddressLine2;
+            entity.City = model.City;
+            entity.PostalCode = model.PostalCode;
+        }
+
+        return entity;
     }
 }

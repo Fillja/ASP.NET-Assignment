@@ -26,6 +26,25 @@ public class UserFactory
         }
     }
 
+    public ResponseResult PopulateUserEntity(AccountDetailsBasicFormModel model, UserEntity entity)
+    {
+        try
+        {
+            entity.FirstName = model.FirstName;
+            entity.LastName = model.LastName;
+            entity.Email = model.Email;
+            entity.UserName = model.Email;
+            entity.PhoneNumber = model.Phone;
+            entity.Bio = model.Biography;
+
+            return ResponseFactory.Ok("Populated successfully.");
+        }
+        catch(Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
+    }
+
     public AccountDetailsBasicFormModel PopulateBasicForm(UserEntity userEntity)
     {
         var model = new AccountDetailsBasicFormModel

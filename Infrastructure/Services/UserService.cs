@@ -60,4 +60,9 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
             return ResponseFactory.Error(ex.Message);
         }
     }
+
+    public async Task<ResponseResult> UpdateUser(UserEntity userEntity)
+    {
+        return null!;
+    }
 }
