@@ -22,6 +22,7 @@
                 <form method="post" asp-controller="Account" asp-action="UpdateBasicForm">
                     <h2>Account Details</h2>
                     <h5>Basic Info</h5>
+                    <p>@Model.BasicDisplayMessage</p>
 
                     <div class="content">
                         <div id="form-firstname" class="input-group">
@@ -65,9 +66,10 @@
             <hr />
 
             <section class="address-info">
-                <form method="post" asp-controller="Account" asp-action="UpdateAddressForm">
+                <form method="post" asp-controller="Account" asp-action="UpdateAddressForm" id="">
                     
                     <h5>Address</h5>
+                    <p>@Model.AddressDisplayMessage</p>
 
                     <div class="content">
 
@@ -107,5 +109,4 @@
         </div>
     </section>
 </div>
-
-
+@await Html.PartialAsync("_ValidationScriptPartial")

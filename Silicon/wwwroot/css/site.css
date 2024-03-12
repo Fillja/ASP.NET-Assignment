@@ -1135,6 +1135,9 @@ footer .container .social-media {
     gap: 150px;
   }
 }
+#account-details .field-validation-error {
+  color: #EF4444;
+}
 #account-details aside {
   border-right: 1px solid #E2E5F1;
   padding-right: 20px;
@@ -1184,10 +1187,7 @@ footer .container .social-media {
 }
 #account-details .details .input-group input.input-validation-error {
   border: 0.063 rem solid #EF4444 !important;
-  color: #EF4444;
-}
-#account-details .details .input-group input.input-validation-error::placeholder {
-  color: #EF4444;
+  background-color: #fef1f1;
 }
 #account-details .details textarea {
   padding: 1rem;
@@ -1200,10 +1200,7 @@ footer .container .social-media {
 }
 #account-details .details textarea.input-validation-error {
   border: 0.063 rem solid #EF4444 !important;
-  color: #EF4444;
-}
-#account-details .details textarea.input-validation-error::placeholder {
-  color: #EF4444;
+  background-color: #fef1f1;
 }
 #account-details .details .form-buttons {
   grid-area: buttons;

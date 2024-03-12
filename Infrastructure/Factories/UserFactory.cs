@@ -2,11 +2,14 @@
 using Infrastructure.Models;
 using Infrastructure.Models.Account;
 using Infrastructure.Models.Auth;
+using Infrastructure.Repositories;
 
 namespace Infrastructure.Factories;
 
-public class UserFactory
+public class UserFactory(UserRepository userRepository)
 {
+    private readonly UserRepository _userRepository = userRepository;
+
     public ResponseResult PopulateUserEntity(SignUpFormModel model)
     {
         try
@@ -37,7 +40,7 @@ public class UserFactory
             entity.PhoneNumber = model.Phone;
             entity.Bio = model.Biography;
 
-            return ResponseFactory.Ok("Populated successfully.");
+            return ResponseFactory.Ok(entity,"Populated successfully.");
         }
         catch(Exception ex)
         {

@@ -1,22 +1,26 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Models.Account;
+using Infrastructure.Repositories;
 
 namespace Infrastructure.Factories;
 
-public class AddressFactory
+public class AddressFactory(AddressRepository addressRepository)
 {
-    public AccountDetailsAddressFormModel PopulateAddressForm(UserEntity userEntity)
+    private readonly AddressRepository _addressRepository = addressRepository;
+
+    public async Task<AccountDetailsAddressFormModel> PopulateAddressForm(UserEntity userEntity)
     {
+        var result = await _addressRepository.GetOneAsync(x => x.Id == userEntity.AddressId);
+        var addressEntity = (AddressEntity)result.ContentResult!;
         var model = new AccountDetailsAddressFormModel();
 
-        if (userEntity.AddressId != null)
+        if(addressEntity != null)
         {
-            model.AddressLine1 = userEntity.Address!.Addressline_1;
-            model.AddressLine2 = userEntity.Address.Addressline_2;
-            model.PostalCode = userEntity.Address.PostalCode;
-            model.City = userEntity.Address.City;
-        };
-
+            model.AddressLine1 = addressEntity.Addressline_1;
+            model.AddressLine2 = addressEntity.Addressline_2;
+            model.PostalCode = addressEntity.PostalCode;
+            model.City = addressEntity.City;
+        }
         return model;
     }
 

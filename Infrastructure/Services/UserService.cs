@@ -1,6 +1,7 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Factories;
 using Infrastructure.Models;
+using Infrastructure.Models.Account;
 using Infrastructure.Models.Auth;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Identity;
@@ -61,8 +62,29 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
         }
     }
 
-    public async Task<ResponseResult> UpdateUser(UserEntity userEntity)
+    public async Task<ResponseResult> UpdateBasicInfoAsync(UserEntity userEntity, AccountDetailsBasicFormModel model)
     {
-        return null!;
+        try
+        {
+            if (userEntity.Email != model.Email)
+            {
+                var existResult = await _userRepository.ExistsAsync(x => x.Email == model.Email);
+                if (existResult.StatusCode == StatusCode.EXISTS)
+                    return ResponseFactory.Exists("A user with that email already exists.");
+            }
+            
+            var responseResult = _userFactory.PopulateUserEntity(model, userEntity);
+            var userToUpdate = (UserEntity)responseResult.ContentResult!;
+
+            var updateResult = await _userManager.UpdateAsync(userToUpdate);
+            if (updateResult.Succeeded)
+                return ResponseFactory.Ok("Updated successfully.");
+
+            return ResponseFactory.Error("Something went wrong.");
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
     }
 }

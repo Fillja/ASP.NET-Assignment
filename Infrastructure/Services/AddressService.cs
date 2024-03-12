@@ -45,19 +45,26 @@ public class AddressService(AddressRepository addressRepository, AddressFactory 
 
     public async Task<ResponseResult> UpdateUserWithAddress(UserEntity userEntity, AccountDetailsAddressFormModel model)
     {
-        var responseResult = await GetOrCreateAddressAsync(model);
-        if (responseResult.StatusCode == StatusCode.OK)
+        try
         {
-            var addressEntity = (AddressEntity)responseResult.ContentResult!;
-            userEntity.AddressId = addressEntity.Id;
-
-            var updateResult = await _userManager.UpdateAsync(userEntity);
-
-            if (updateResult.Succeeded)
+            var responseResult = await GetOrCreateAddressAsync(model);
+            if (responseResult.StatusCode == StatusCode.OK)
             {
-                return ResponseFactory.Ok();
+                var addressEntity = (AddressEntity)responseResult.ContentResult!;
+                userEntity.AddressId = addressEntity.Id;
+
+                var updateResult = await _userManager.UpdateAsync(userEntity);
+
+                if (updateResult.Succeeded)
+                {
+                    return ResponseFactory.Ok("Updated successfully.");
+                }
             }
+            return ResponseFactory.Error("Something went wrong.");
         }
-        return ResponseFactory.Error();
+        catch (Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
     }
 }
