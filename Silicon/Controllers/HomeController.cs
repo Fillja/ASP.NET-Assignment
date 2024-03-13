@@ -10,4 +10,14 @@ public class HomeController : Controller
 
         return View();
     }
+
+    [HttpPost]
+    public IActionResult Subscribe()
+    {
+        if(ModelState.IsValid)
+        {
+
+        }
+        return RedirectToAction("Index");
+    }
 }

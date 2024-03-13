@@ -962,7 +962,6 @@ footer .container .social-media {
 }
 #newsletter .container .subscribe {
   display: grid;
-  grid-template-rows: 1fr 1fr;
   gap: 1rem;
   padding-bottom: 0.5rem;
 }

@@ -1,48 +1,53 @@
-﻿<section id="newsletter">
+﻿@model NewsLetterModel
+
+<section id="newsletter">
     <div class="container">
 
         <div class="title-box">
             <h1>Don't want to Miss Anything?</h1>
             <img src="/images/arrows.svg" alt="">
         </div>
-
-        <div class="signup">
-            <h5>Sign up for<br>Newsletters</h5>
-            <div class="content">
-                <div class="newsletter-boxes">
-                    <input type="checkbox" id="Daily">
-                    <label for="Daily">Daily newsletter</label>
-                </div>
-                <div class="newsletter-boxes">
-                    <input type="checkbox" id="Advertising">
-                    <label for="Advertising">Advertising Updates</label>
-                </div>
-                <div class="newsletter-boxes">
-                    <input type="checkbox" id="Week">
-                    <label for="Week">Week in Review</label>
-                </div>
-                <div class="newsletter-boxes">
-                    <input type="checkbox" id="Event">
-                    <label for="Event">Event Updates</label>
-                </div>
-                <div class="newsletter-boxes">
-                    <input type="checkbox" id="Startups">
-                    <label for="Startups">Startups Weekly</label>
-                </div>
-                <div class="newsletter-boxes">
-                    <input type="checkbox" id="Podcasts">
-                    <label for="Podcasts">Podcasts</label>
+        <form asp-controller="Home" asp-action="Subscribe" novalidate>
+            <div class="signup">
+                <h5>Sign up for<br>Newsletters</h5>
+                <div class="content">
+                    <div class="newsletter-boxes">
+                        <input asp-for="DailyNewsletter"/>
+                        <label asp-for="DailyNewsletter"></label>
+                    </div>
+                    <div class="newsletter-boxes">
+                        <input asp-for="AdvertisingUpdates"/>
+                        <label asp-for="AdvertisingUpdates"></label>
+                    </div>
+                    <div class="newsletter-boxes">
+                        <input asp-for="WeekInReview" />
+                        <label asp-for="WeekInReview"></label>
+                    </div>
+                    <div class="newsletter-boxes">
+                        <input asp-for="EventUpdates" />
+                        <label asp-for="EventUpdates"></label>
+                    </div>
+                    <div class="newsletter-boxes">
+                        <input asp-for="StartupsWeekly"/>
+                        <label asp-for="StartupsWeekly"></label>
+                    </div>
+                    <div class="newsletter-boxes">
+                        <input asp-for="Podcasts"/>
+                        <label asp-for="Podcasts"></label>
+                    </div>
                 </div>
             </div>
-        </div>
 
-        <div class="subscribe">
-            <div class="input-div">
-                <i class="fa-light fa-envelope"></i>
-                <input type="text" placeholder="Your Email">
+            <span asp-validation-for="Email"></span>
+            <div class="subscribe">
+                <div class="input-div">
+                    <i class="fa-light fa-envelope"></i>
+                    <input asp-for="Email"/>
+                </div>
+                <button class="btn-theme" type="submit" asp-fragment="newsletter">Subscribe*</button>
             </div>
-            <a class="btn-theme" href="">Subscribe*</a>
-        </div>
-        <p>* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy.</a></p>
+            <p>* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy.</a></p>
+        </form>
     </div>
 </section>
+@await Html.PartialAsync("_ValidationScriptPartial")
