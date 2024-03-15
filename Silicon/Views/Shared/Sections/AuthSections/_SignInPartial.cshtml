@@ -27,6 +27,17 @@
                 <button class="btn-theme" type="submit">Sign in</button>
                 <a asp-controller="Account" asp-action="Forgot">Forgot your password?</a>
             </div>
+
+            <hr />
+
+            <div class="external-providers">
+                <h6>Or sign in with your social account</h6>
+                <div class="external-buttons">
+                    <a class="btn-gray" asp-action="Google" asp-controller="Auth"><i class="fa-brands fa-google"></i>Google</a>
+                    <a class="btn-gray" asp-action="Facebook" asp-controller="Auth"><i class="fa-brands fa-facebook"></i>Facebook</a>
+                </div>
+            </div>
+
         </form>
     </div>
 </section>

@@ -49,6 +49,22 @@
             label {
                 color: $gray-900;
             }
+
+            .external-providers {
+                text-align: center;
+                padding: 1rem 0;
+
+                .external-buttons {
+                    display: flex;
+                    justify-content: center;
+                    gap: 1rem;
+                    padding: 1rem 0;
+
+                    .btn-gray {
+                        width: 100%;
+                    }
+                }
+            }
         }
 
         .form-button {

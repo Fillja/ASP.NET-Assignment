@@ -4,6 +4,7 @@ using Infrastructure.Models;
 using Infrastructure.Models.Account;
 using Infrastructure.Models.Auth;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 
 namespace Infrastructure.Services;
@@ -81,6 +82,42 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
                 return ResponseFactory.Ok("Updated successfully.");
 
             return ResponseFactory.Error("Something went wrong.");
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
+    }
+
+    public async Task<ResponseResult> RegisterOrUpdateExternalAccountAsync(UserEntity userEntity)
+    {
+        try
+        {
+            var existResult = await _userRepository.ExistsAsync(x => x.Email == userEntity.Email);
+
+            if(existResult.StatusCode == StatusCode.NOT_FOUND)
+            {
+                var result = await _userManager.CreateAsync(userEntity);
+                if (result.Succeeded)
+                {
+                    var user = await _userManager.FindByEmailAsync(userEntity.Email!);
+                    return ResponseFactory.Ok(user!, "Created external user successfully.");
+                }
+            }
+
+            if(existResult.StatusCode == StatusCode.EXISTS)
+            {
+                var user = await _userManager.FindByEmailAsync(userEntity.Email!);
+
+                if (user!.FirstName != userEntity.FirstName || user.LastName != userEntity.LastName || user.Email != userEntity.Email || user.PhoneNumber != userEntity.PhoneNumber || user.Bio != userEntity.Bio)
+                {
+                    var responseResult = _userFactory.PopulateUserEntity(userEntity, user);
+                    await _userManager.UpdateAsync((UserEntity)responseResult.ContentResult!);
+                }
+                return ResponseFactory.Ok(user, "Found external user.");
+            }
+
+            return ResponseFactory.Error("Something went wrong with the registration or update.");
         }
         catch (Exception ex)
         {

@@ -1033,6 +1033,19 @@ footer .container .social-media {
 #sign-in .container form label {
   color: #0B0F19;
 }
+#sign-in .container form .external-providers {
+  text-align: center;
+  padding: 1rem 0;
+}
+#sign-in .container form .external-providers .external-buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  padding: 1rem 0;
+}
+#sign-in .container form .external-providers .external-buttons .btn-gray {
+  width: 100%;
+}
 #sign-in .container .form-button {
   text-align: center;
 }

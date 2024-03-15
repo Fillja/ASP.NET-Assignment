@@ -3,6 +3,8 @@ using Infrastructure.Models;
 using Infrastructure.Models.Account;
 using Infrastructure.Models.Auth;
 using Infrastructure.Repositories;
+using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Infrastructure.Factories;
 
@@ -48,6 +50,44 @@ public class UserFactory(UserRepository userRepository)
         }
     }
 
+    public ResponseResult PopulateUserEntity(ExternalLoginInfo info)
+    {
+        try
+        {
+            var result = new UserEntity
+            {
+                FirstName = info.Principal.FindFirstValue(ClaimTypes.GivenName)!,
+                LastName = info.Principal.FindFirstValue(ClaimTypes.Surname)!,
+                Email = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+                UserName = info.Principal.FindFirstValue(ClaimTypes.Email)!,
+                IsExternalAccount = true,
+            };
+            return ResponseFactory.Ok(result, "Populated successfully.");
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
+    }
+
+    public ResponseResult PopulateUserEntity(UserEntity userEntity, UserEntity identityUser)
+    {
+        try
+        {
+            identityUser.FirstName = userEntity.FirstName;
+            identityUser.LastName = userEntity.LastName;
+            identityUser.Email = userEntity.Email;
+            identityUser.PhoneNumber = userEntity.PhoneNumber;
+            identityUser.Email = userEntity.Email;
+
+            return ResponseFactory.Ok(identityUser, "Populated successfully.");
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
+    }
+
     public AccountDetailsBasicFormModel PopulateBasicForm(UserEntity userEntity)
     {
         var model = new AccountDetailsBasicFormModel
@@ -58,6 +98,7 @@ public class UserFactory(UserRepository userRepository)
             Phone = userEntity.PhoneNumber!,
             Biography = userEntity.Bio,
             ProfileImage = "images/profile-image.svg",
+            IsExternalAccount = userEntity.IsExternalAccount,
         };
 
         return model;

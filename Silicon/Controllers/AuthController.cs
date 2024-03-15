@@ -1,15 +1,18 @@
 ﻿using Infrastructure.Entities;
+using Infrastructure.Factories;
 using Infrastructure.Services;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Silicon.ViewModels.Auth;
+using System.Security.Claims;
 
 namespace Silicon.Controllers;
 
-public class AuthController(UserService userService, SignInManager<UserEntity> signInManager) : Controller
+public class AuthController(UserService userService, SignInManager<UserEntity> signInManager, UserFactory userFactory) : Controller
 {
     private readonly UserService _userService = userService;
+    private readonly UserFactory _userFactory = userFactory;
     private readonly SignInManager<UserEntity> _signInManager = signInManager;
 
     #region Signup
@@ -32,9 +35,9 @@ public class AuthController(UserService userService, SignInManager<UserEntity> s
         {
             var result = await _userService.RegisterUserAsync(viewModel.Form);
 
-            if(result.StatusCode == Infrastructure.Models.StatusCode.OK)
+            if (result.StatusCode == Infrastructure.Models.StatusCode.OK)
                 return RedirectToAction("SignIn", "Auth");
-            
+
             viewModel.ErrorMessage = result.Message;
             return View(viewModel);
         }
@@ -84,5 +87,77 @@ public class AuthController(UserService userService, SignInManager<UserEntity> s
         await _signInManager.SignOutAsync();
         return RedirectToAction("Index", "Home");
     }
+    #endregion
+
+    #region External Authentication
+
+    [HttpGet]
+    public IActionResult Facebook()
+    {
+        var authProps = _signInManager.ConfigureExternalAuthenticationProperties("Facebook", Url.Action("FacebookCallBack"));
+        return new ChallengeResult("Facebook", authProps);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> FacebookCallBack()
+    {
+        var info = await _signInManager.GetExternalLoginInfoAsync();
+
+        if (info != null)
+        {
+            var responseResult = _userFactory.PopulateUserEntity(info);
+
+            if (responseResult.StatusCode == Infrastructure.Models.StatusCode.OK)
+            {
+                var result = await _userService.RegisterOrUpdateExternalAccountAsync((UserEntity)responseResult.ContentResult!);
+
+                if(result.StatusCode != Infrastructure.Models.StatusCode.ERROR)
+                {
+                    var user = (UserEntity)result.ContentResult!;
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                }
+                if(HttpContext.User != null)
+                    return RedirectToAction("Details", "Account");
+            }
+        }
+
+        ModelState.AddModelError("InvalidFacebookAuthentication", "Failed to authenticate with Facebook.");
+        return RedirectToAction("Signin", "Auth");
+    }
+
+    [HttpGet]
+    public IActionResult Google()
+    {
+        var authProps = _signInManager.ConfigureExternalAuthenticationProperties("Google", Url.Action("GoogleCallBack"));
+        return new ChallengeResult("Google", authProps);
+    }
+
+    [HttpGet]
+    public async Task<IActionResult> GoogleCallBack()
+    {
+        var info = await _signInManager.GetExternalLoginInfoAsync();
+
+        if (info != null)
+        {
+            var responseResult = _userFactory.PopulateUserEntity(info);
+
+            if (responseResult.StatusCode == Infrastructure.Models.StatusCode.OK)
+            {
+                var result = await _userService.RegisterOrUpdateExternalAccountAsync((UserEntity)responseResult.ContentResult!);
+
+                if (result.StatusCode != Infrastructure.Models.StatusCode.ERROR)
+                {
+                    var user = (UserEntity)result.ContentResult!;
+                    await _signInManager.SignInAsync(user, isPersistent: false);
+                }
+                if (HttpContext.User != null)
+                    return RedirectToAction("Details", "Account");
+            }
+        }
+
+        ModelState.AddModelError("InvalidFacebookAuthentication", "Failed to authenticate with Facebook.");
+        return RedirectToAction("Signin", "Auth");
+    }
+
     #endregion
 }
