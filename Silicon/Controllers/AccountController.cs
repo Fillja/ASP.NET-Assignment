@@ -85,4 +85,42 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
         return RedirectToAction("Details");
     }
+
+    public async Task<IActionResult> Security()
+    {
+        var viewModel = new AccountDetailsViewModel();
+        var userEntity = await _userManager.GetUserAsync(User);
+
+        if (userEntity != null)
+        {
+            viewModel.BasicForm = _userFactory.PopulateBasicForm(userEntity);
+            if (TempData.ContainsKey("BasicDisplayMessage"))
+                viewModel.BasicDisplayMessage = TempData["BasicDisplayMessage"]!.ToString();
+
+            viewModel.AddressForm = await _addressFactory.PopulateAddressForm(userEntity);
+            if (TempData.ContainsKey("AddressDisplayMessage"))
+                viewModel.AddressDisplayMessage = TempData["AddressDisplayMessage"]!.ToString();
+        }
+
+        return View(viewModel);
+    }
+
+    public async Task<IActionResult> SavedCourses()
+    {
+        var viewModel = new AccountDetailsViewModel();
+        var userEntity = await _userManager.GetUserAsync(User);
+
+        if (userEntity != null)
+        {
+            viewModel.BasicForm = _userFactory.PopulateBasicForm(userEntity);
+            if (TempData.ContainsKey("BasicDisplayMessage"))
+                viewModel.BasicDisplayMessage = TempData["BasicDisplayMessage"]!.ToString();
+
+            viewModel.AddressForm = await _addressFactory.PopulateAddressForm(userEntity);
+            if (TempData.ContainsKey("AddressDisplayMessage"))
+                viewModel.AddressDisplayMessage = TempData["AddressDisplayMessage"]!.ToString();
+        }
+
+        return View(viewModel);
+    }
 }

@@ -1,0 +1,67 @@
+﻿@model AccountDetailsViewModel
+
+<div class="container">
+    <section id="account-security">
+            
+        <aside>
+            <div class="profile-info">
+                <img src="@Model.BasicForm.ProfileImage" alt="@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")" />
+                <h5>@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")</h5>
+                <p>@Model.BasicForm.Email</p>
+            </div>
+            
+            <nav>
+                <a class="btn-transparent" asp-controller="Account" asp-action="Details">Account Details</a>
+                <a class="btn-theme-s" asp-controller="Account" asp-action="Security">Security</a>
+                <a class="btn-transparent" asp-controller="Account" asp-action="SavedCourses">Saved Courses</a>
+                <a class="btn-transparent" asp-controller="Auth" asp-action="SignOut">Sign Out</a>
+            </nav>
+        </aside>
+            
+        <div class="security">
+            <form method="post" asp-controller="Account" asp-action="UpdatePassword">
+                <h2>Security</h2>
+                <h5>Password</h5>
+                <p>@Model.BasicDisplayMessage</p>
+            
+                <div class="content">
+            
+                    <div id="form-current-password" class="input-group">
+                        <label asp-for="BasicForm.FirstName"></label>
+                        <span asp-validation-for="BasicForm.FirstName"></span>
+                        <input asp-for="BasicForm.FirstName" />
+                    </div>
+            
+                    <div id="form-new-password" class="input-group">
+                        <label asp-for="BasicForm.FirstName"></label>
+                        <span asp-validation-for="BasicForm.FirstName"></span>
+                        <input asp-for="BasicForm.FirstName" />
+                    </div>
+            
+                    <div id="form-confirm-password" class="input-group">
+                        <label asp-for="BasicForm.FirstName"></label>
+                        <span asp-validation-for="BasicForm.FirstName"></span>
+                        <input asp-for="BasicForm.FirstName" />
+                    </div>
+            
+                    <div class="form-buttons">
+                        <button class="btn-gray" type="reset">Cancel</button>
+                        <button class="btn-theme" type="submit">Change password</button>
+                    </div>
+                                
+                </div>
+            </form>
+
+            <hr />
+                        
+            <div class="delete-account">
+                <h5>Delete account</h5>
+                <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
+                <input type="checkbox" class="checkbox-input" asp-for="BasicForm.IsExternalAccount">
+                <label asp-for="BasicForm.FirstName"></label>
+                <button class="btn-red">Delete</button>
+            </div>
+                        
+        </div>                    
+    </section>
+</div>

@@ -220,6 +220,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   gap: 12px;
+  transition: all 0.25s ease-in-out;
   background: #6366F1;
   color: #FFFFFF;
   border: none;
@@ -239,6 +240,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   gap: 12px;
+  transition: all 0.25s ease-in-out;
   box-shadow: 0px 8px 18px -8px rgba(99, 102, 241, 0.9);
   background: #6366F1;
   color: #FFFFFF;
@@ -261,6 +263,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   gap: 12px;
+  transition: all 0.25s ease-in-out;
   background: #EFF2FC;
   color: #33354D;
   border: none;
@@ -268,6 +271,46 @@ a:hover {
 .btn-gray:hover {
   text-decoration: none;
   background: #565973;
+  color: #FFFFFF;
+}
+
+.btn-red {
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.25s ease-in-out;
+  background: #EF4444;
+  color: #FFFFFF;
+  border: none;
+}
+.btn-red:hover {
+  text-decoration: none;
+  background: #565973;
+  color: #FFFFFF;
+}
+
+.btn-red-transparent {
+  border-radius: 6px;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px 28px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.25s ease-in-out;
+  background: #FFFFFF;
+  color: #EF4444;
+  border: solid 1px #EF4444;
+}
+.btn-red-transparent:hover {
+  text-decoration: none;
+  background: #EF4444;
   color: #FFFFFF;
 }
 
@@ -280,6 +323,7 @@ a:hover {
   justify-content: center;
   align-items: center;
   gap: 12px;
+  transition: all 0.25s ease-in-out;
   background: transparent;
   color: #0B0F19;
   border: none;
@@ -1308,6 +1352,289 @@ footer .container .social-media {
 }
 #account-details .details .address-info form .content #form-city {
   grid-area: city;
+}
+
+#account-security {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  gap: 0px;
+  margin-bottom: 70px;
+}
+@media (min-width: 992px) {
+  #account-security {
+    gap: 150px;
+  }
+}
+#account-security .field-validation-error {
+  color: #EF4444;
+}
+#account-security aside {
+  border-right: 1px solid #E2E5F1;
+  padding-right: 20px;
+}
+#account-security aside .profile-info {
+  margin: 20px;
+  text-align: center;
+}
+#account-security aside .profile-info h5 {
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+#account-security aside .profile-info p {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px !important;
+}
+#account-security aside nav {
+  margin-top: 50px;
+  text-align: left;
+}
+#account-security aside nav a {
+  margin: 10px 0;
+  text-align: left;
+  justify-content: flex-start;
+}
+#account-security aside nav .btn-theme-s {
+  text-align: left;
+  justify-content: flex-start;
+}
+#account-security .security {
+  margin-top: 50px;
+  width: 100%;
+}
+#account-security .security h5 {
+  color: #6366F1;
+}
+#account-security .security .input-group {
+  display: grid;
+}
+#account-security .security .input-group input {
+  padding: 1rem;
+  border-radius: 0.5rem !important;
+  border: 0.063rem solid #D4D7E5;
+}
+#account-security .security .input-group input::placeholder {
+  opacity: 0.4;
+}
+#account-security .security .input-group input.input-validation-error {
+  border: 0.063 rem solid #EF4444 !important;
+  background-color: #fef1f1;
+}
+#account-security .security form {
+  padding: 1rem;
+}
+#account-security .security form .content {
+  display: grid;
+  gap: 1rem 2rem;
+  grid-template-columns: 1fr;
+  grid-template-areas: "current-pw" "new-pw" "confirm-pw" "buttons" "buttons";
+}
+@media (min-width: 992px) {
+  #account-security .security form .content {
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas: "current-pw nothing" "new-pw confirm-pw" "buttons buttons";
+  }
+}
+#account-security .security form .content #form-current-password {
+  grid-area: current-pw;
+}
+#account-security .security form .content #form-new-password {
+  grid-area: new-pw;
+}
+#account-security .security form .content #form-confirm-password {
+  grid-area: confirm-pw;
+}
+#account-security .security form .content .form-buttons {
+  grid-area: buttons;
+  margin: 20px 0;
+  gap: 20px;
+}
+@media (min-width: 992px) {
+  #account-security .security form .content .form-buttons {
+    display: flex;
+  }
+}
+#account-security .security form .content .form-buttons button {
+  display: block;
+  width: 100%;
+  margin: 1rem 0;
+}
+@media (min-width: 992px) {
+  #account-security .security form .content .form-buttons button {
+    margin: 0;
+    width: auto;
+  }
+}
+#account-security .security .delete-account {
+  padding: 2rem;
+}
+#account-security .security .delete-account .checkbox-input {
+  margin-right: 0.5rem;
+}
+#account-security .security .delete-account .btn-red {
+  margin-top: 2rem;
+}
+
+#account-security {
+  display: grid;
+  grid-template-columns: 2fr 5fr;
+  gap: 30px;
+  margin-bottom: 70px;
+}
+@media (min-width: 992px) {
+  #account-security {
+    gap: 100px;
+  }
+}
+#account-security .field-validation-error {
+  color: #EF4444;
+}
+#account-security aside {
+  border-right: 1px solid #E2E5F1;
+  padding-right: 20px;
+}
+#account-security aside .profile-info {
+  margin: 20px;
+  text-align: center;
+}
+#account-security aside .profile-info h5 {
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+#account-security aside .profile-info p {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 16px !important;
+}
+#account-security aside nav {
+  margin-top: 50px;
+  text-align: left;
+}
+#account-security aside nav a {
+  margin: 10px 0;
+  text-align: left;
+  justify-content: flex-start;
+}
+#account-security aside nav .btn-theme-s {
+  text-align: left;
+  justify-content: flex-start;
+}
+#account-security .saved-items {
+  padding: 2rem 0;
+}
+#account-security .saved-items .title-box {
+  display: block;
+  text-align: center;
+}
+#account-security .saved-items .title-box button {
+  width: 100%;
+}
+@media (min-width: 768px) {
+  #account-security .saved-items .title-box button {
+    width: auto;
+  }
+}
+@media (min-width: 768px) {
+  #account-security .saved-items .title-box {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+#account-security .saved-items .content {
+  display: grid;
+  justify-content: start;
+  grid-template-columns: auto;
+  gap: 2rem;
+  padding: 2rem 0;
+}
+@media (min-width: 992px) {
+  #account-security .saved-items .content {
+    justify-content: center;
+  }
+}
+@media (min-width: 1200px) {
+  #account-security .saved-items .content {
+    justify-content: center;
+    grid-template-columns: 1fr 1fr;
+  }
+}
+#account-security .saved-items .content .course-box {
+  max-width: 26rem;
+  box-shadow: 1px 1px 1px 1px #E2E5F1;
+  border-radius: 0.5rem;
+  overflow: hidden;
+}
+#account-security .saved-items .content .course-box .image-box {
+  position: relative;
+}
+#account-security .saved-items .content .course-box .image-box img {
+  width: 100%;
+}
+#account-security .saved-items .content .course-box .image-box .bookmark {
+  text-decoration: none;
+  color: #0B0F19;
+  background-color: white;
+  border-radius: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  padding-top: 0.3rem;
+  text-align: center;
+  position: absolute;
+  right: 2rem;
+  top: 2rem;
+}
+#account-security .saved-items .content .course-box .image-box .bookmark:hover {
+  background-color: #6366F1;
+}
+#account-security .saved-items .content .course-box .course-text-box {
+  display: block;
+  text-decoration: none;
+  padding: 2rem 2rem 0 2rem;
+}
+#account-security .saved-items .content .course-box .course-text-box h5 {
+  color: #33354D;
+}
+#account-security .saved-items .content .course-box .course-text-box p {
+  color: #565973;
+}
+#account-security .saved-items .content .course-box .course-text-box hr {
+  display: none;
+}
+@media (min-width: 768px) {
+  #account-security .saved-items .content .course-box .course-text-box hr {
+    display: block;
+  }
+}
+#account-security .saved-items .content .course-box .course-text-box .price {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px !important;
+  font-weight: 700;
+  color: #6366F1;
+}
+#account-security .saved-items .content .course-box .course-text-box .time-rating {
+  display: none;
+  gap: 1rem;
+  color: #9397AD;
+}
+#account-security .saved-items .content .course-box .course-text-box .time-rating i {
+  margin-right: 0.5rem;
+}
+@media (min-width: 768px) {
+  #account-security .saved-items .content .course-box .course-text-box .time-rating {
+    display: flex;
+  }
+}
+#account-security .saved-items .content .course-box .course-text-box:hover {
+  opacity: 0.6;
+  background-color: #EFF2FC;
 }
 
 #courses {
