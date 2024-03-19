@@ -11,9 +11,10 @@ using Silicon.ViewModels.Account;
 namespace Silicon.Controllers;
 
 [Authorize]
-public class AccountController(UserManager<UserEntity> userManager, UserFactory userFactory, AddressFactory addressFactory, AddressService addressService, UserService userService) : Controller
+public class AccountController(UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, UserFactory userFactory, AddressFactory addressFactory, AddressService addressService, UserService userService) : Controller
 {
     private readonly UserManager<UserEntity> _userManager = userManager;
+    private readonly SignInManager<UserEntity> _signInManager = signInManager;
     private readonly AddressService _addressService = addressService;
     private readonly UserService _userService = userService;
     private readonly UserFactory _userFactory = userFactory;
@@ -43,15 +44,24 @@ public class AccountController(UserManager<UserEntity> userManager, UserFactory 
     [HttpPost]
     public async Task<IActionResult> UpdateBasicForm([Bind(Prefix = "BasicForm")] AccountDetailsBasicFormModel model)
     {
-        var userEntity = await _userManager.GetUserAsync(User);
         TempData["BasicDisplayMessage"] = "You must fill out all the necessary fields.";
 
-        if (TryValidateModel(model))
+        var userEntity = await _userManager.GetUserAsync(User);
+        var externalUser = await _signInManager.GetExternalLoginInfoAsync();
+
+        if(externalUser != null)
+        {
+            var claims = HttpContext.User.Identities.FirstOrDefault();
+            var responseResult = await _userService.UpdateExternalBasicInfoAsync(externalUser, model, claims!);
+            TempData["BasicDisplayMessage"] = responseResult.Message;
+        }
+
+        else if (TryValidateModel(model))
         {
             if (userEntity != null)
             {
-                var result = await _userService.UpdateBasicInfoAsync(userEntity, model);
-                TempData["BasicDisplayMessage"] = result.Message;
+                var responseResult = await _userService.UpdateBasicInfoAsync(userEntity, model);
+                TempData["BasicDisplayMessage"] = responseResult.Message;
             }
         }
 
@@ -68,8 +78,8 @@ public class AccountController(UserManager<UserEntity> userManager, UserFactory 
         {
             if (userEntity != null)
             {
-                var result = await _addressService.UpdateUserWithAddress(userEntity!, model);
-                TempData["AddressDisplayMessage"] = result.Message;
+                var responseResult = await _addressService.UpdateUserWithAddress(userEntity!, model);
+                TempData["AddressDisplayMessage"] = responseResult.Message;
             }
         }
 

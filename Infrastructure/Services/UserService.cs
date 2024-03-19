@@ -6,6 +6,7 @@ using Infrastructure.Models.Auth;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using System.Security.Claims;
 
 namespace Infrastructure.Services;
 
@@ -109,7 +110,7 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
             {
                 var user = await _userManager.FindByEmailAsync(userEntity.Email!);
 
-                if (user!.FirstName != userEntity.FirstName || user.LastName != userEntity.LastName || user.Email != userEntity.Email || user.PhoneNumber != userEntity.PhoneNumber || user.Bio != userEntity.Bio)
+                if (user!.FirstName != userEntity.FirstName || user.LastName != userEntity.LastName || user.Email != userEntity.Email)
                 {
                     var responseResult = _userFactory.PopulateUserEntity(userEntity, user);
                     await _userManager.UpdateAsync((UserEntity)responseResult.ContentResult!);
@@ -118,6 +119,41 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
             }
 
             return ResponseFactory.Error("Something went wrong with the registration or update.");
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
+    }
+
+    public async Task<ResponseResult> UpdateExternalBasicInfoAsync(ExternalLoginInfo externalUser, AccountDetailsBasicFormModel model, ClaimsIdentity claims)
+    {
+        try
+        {
+            if (claims?.Name != null)
+            {
+                bool isFacebookUser = externalUser?.LoginProvider == "Facebook";
+                bool isGoogleUser = externalUser?.LoginProvider == "Google";
+
+                if (isFacebookUser || isGoogleUser)
+                {
+                    var existingUser = await _userManager.FindByEmailAsync(claims.Name);
+
+                    if (existingUser != null)
+                    {
+                        existingUser.Bio = model.Biography;
+                        existingUser.PhoneNumber = model.Phone;
+
+                        var result = await _userManager.UpdateAsync(existingUser);
+
+                        if (result.Succeeded)
+                            return ResponseFactory.Ok(existingUser, "Updated successfully.");
+
+                    }
+                }
+            }
+
+            return ResponseFactory.NotFound("External user not found.");
         }
         catch (Exception ex)
         {
