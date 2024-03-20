@@ -1,11 +1,9 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Factories;
 using Infrastructure.Services;
-using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Silicon.ViewModels.Auth;
-using System.Security.Claims;
 
 namespace Silicon.Controllers;
 

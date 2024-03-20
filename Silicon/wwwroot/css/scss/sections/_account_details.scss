@@ -20,6 +20,12 @@
             margin: 20px;
             text-align: center;
 
+            img {
+                border-radius: 100%;
+                max-width: 6rem;
+                max-height: 6rem;
+            }
+
             h5 {
                 margin-top: 15px;
                 margin-bottom: 0;

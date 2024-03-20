@@ -1,5 +1,6 @@
 ﻿using Infrastructure.Entities;
 using Infrastructure.Factories;
+using Infrastructure.Models;
 using Infrastructure.Models.Account;
 using Infrastructure.Repositories;
 using Infrastructure.Services;
@@ -19,6 +20,8 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
     private readonly UserService _userService = userService;
     private readonly UserFactory _userFactory = userFactory;
     private readonly AddressFactory _addressFactory = addressFactory;
+
+    #region Account Details
 
     [Route("/Details")]
     [HttpGet]
@@ -86,24 +89,74 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
         return RedirectToAction("Details");
     }
 
+    #endregion
+
+    #region Account Security 
+
+    [HttpGet]
+    [Route("/security")]
     public async Task<IActionResult> Security()
     {
-        var viewModel = new AccountDetailsViewModel();
+        var viewModel = new AccountSecurityViewModel();
         var userEntity = await _userManager.GetUserAsync(User);
 
         if (userEntity != null)
         {
             viewModel.BasicForm = _userFactory.PopulateBasicForm(userEntity);
-            if (TempData.ContainsKey("BasicDisplayMessage"))
-                viewModel.BasicDisplayMessage = TempData["BasicDisplayMessage"]!.ToString();
-
-            viewModel.AddressForm = await _addressFactory.PopulateAddressForm(userEntity);
-            if (TempData.ContainsKey("AddressDisplayMessage"))
-                viewModel.AddressDisplayMessage = TempData["AddressDisplayMessage"]!.ToString();
+            if (TempData.ContainsKey("DisplayMessage"))
+                viewModel.DisplayMessage = TempData["DisplayMessage"]!.ToString();
         }
 
         return View(viewModel);
     }
+
+    [HttpPost]
+    public async Task<IActionResult> ChangePassword([Bind(Prefix = "PasswordModel")]AccountSecurityPasswordModel model)
+    {
+        TempData["DisplayMessage"] = "One of the fields were invalid.";
+        var userEntity = await _userManager.GetUserAsync(User);
+
+        if (TryValidateModel(model))
+        {
+            if (userEntity != null)
+            {
+                var passwordResult = await _userManager.ChangePasswordAsync(userEntity, model.OldPassword, model.NewPassword);
+
+                if (passwordResult.Succeeded)
+                {
+                    TempData["DisplayMessage"] = "Password updated successfully.";
+                }
+            }
+        }
+
+        return RedirectToAction("security");
+    }
+
+    [HttpPost]
+    public async Task<IActionResult> DeleteAccount([Bind(Prefix = "DeleteModel")]AccountSecurityDeleteModel model)
+    {
+        TempData["DisplayMessage"] = "Something went wrong with the removal of your account, please try again.";
+        var userEntity = await _userManager.GetUserAsync(User);
+
+        if(TryValidateModel(model))
+        {
+            if (userEntity != null)
+            {
+                var deleteResult = await _userManager.DeleteAsync(userEntity);
+
+                if(deleteResult.Succeeded)
+                {
+                    return RedirectToAction("SignOut", "Auth");
+                }
+            }
+        }
+
+        return RedirectToAction("security");
+    }
+
+    #endregion
+
+    #region Account Saved Courses
 
     public async Task<IActionResult> SavedCourses()
     {
@@ -123,4 +176,6 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
 
         return View(viewModel);
     }
+
+    #endregion
 }

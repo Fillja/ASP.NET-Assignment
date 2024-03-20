@@ -1,19 +1,28 @@
 ﻿@model AccountDetailsViewModel
+@inject UserManager<UserEntity> _userManager
 
 <div class="container">
     <section id="account-details">
         <aside>
             <div class="profile-info">
-                <img src="@Model.BasicForm.ProfileImage" alt="@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")"/>
+                
+                @if(Model.BasicForm.ProfileImage != null)
+                {
+                    <img src="@Model.BasicForm.ProfileImage" alt="@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")" />
+                }
+                else
+                {
+                    <img src="/images/cat.jpg" alt="Cat" />
+                }
                 <h5>@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")</h5>
                 <p>@Model.BasicForm.Email</p>
             </div>
 
             <nav>
-                <a class="btn-theme-s" asp-controller="Account" asp-action="Details">Account Details</a>
-                <a class="btn-transparent" asp-controller="Account" asp-action="Security">Security</a>
-                <a class="btn-transparent" asp-controller="Account" asp-action="SavedCourses">Saved Courses</a>
-                <a class="btn-transparent" asp-controller="Auth" asp-action="SignOut">Sign Out</a>
+                <a class="btn-theme-s" asp-controller="Account" asp-action="Details"><i class="fa-regular fa-gear"></i>Account Details</a>
+                <a class="btn-transparent" asp-controller="Account" asp-action="Security"><i class="fa-regular fa-lock"></i>Security</a>
+                <a class="btn-transparent" asp-controller="Account" asp-action="SavedCourses"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+                <a class="btn-transparent" asp-controller="Auth" asp-action="SignOut"><i class="fa-sharp fa-regular fa-arrow-right-from-bracket"></i>Sign Out</a>
             </nav>
         </aside>
 

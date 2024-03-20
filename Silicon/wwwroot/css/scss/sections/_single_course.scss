@@ -1,0 +1,269 @@
+.single-course-showcase {
+    background-image: url("/images/fullstack-background.svg");
+    background-size: cover;
+    background-repeat: no-repeat;
+
+    .container {
+        color: white;
+        padding: 5rem 0;
+
+        .link-box {
+            margin-bottom: 4rem;
+            width: auto;
+            display: flex;
+
+            a {
+                display: block;
+                color: $gray-300;
+
+                i {
+                    margin-right: 0.3rem;
+                }
+            }
+
+            .link-box-arrows {
+                font-size: 0.7rem;
+                color: $gray-300;
+                margin: 0 1rem;
+            }
+
+            p {
+                display: block;
+                color: $gray-300;
+            }
+        }
+
+        .tags {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 1rem;
+
+            .tag-box {
+                border-radius: 0.3rem;
+                align-items: center;
+                justify-content: center;
+                padding: 0.1rem 0.5rem;
+            }
+
+            .best-seller {
+                background-color: $success;
+            }
+
+            .digital {
+                background-color: $gray-300;
+                color: $gray-900;
+            }
+        }
+
+        h1 {
+            color: $gray-100;
+        }
+
+        p {
+            color: $gray-500;
+            margin-bottom: 3rem;
+        }
+
+        .rating-box {
+            display: flex;
+            gap: 2rem;
+            color: $gray-500;
+            align-items: center;
+            margin-bottom: 10rem;
+
+            .rating {
+                display: flex;
+                padding: 0;
+
+                i {
+                    margin-top: 0.3rem;
+                }
+
+                .yellow {
+                    color: $warning;
+                }
+            }
+
+            .likes {
+                padding: 0 1.5rem;
+                border-right: 1px solid $gray-700;
+                border-left: 1px solid $gray-700;
+            }
+
+            .length {
+                padding: 0;
+            }
+        }
+
+        .author-box {
+            display: flex;
+            gap: 1.5rem;
+
+            img {
+                max-width: 5rem;
+                max-height: 5rem;
+                border-radius: 100%;
+            }
+
+            .text-box {
+
+                h5 {
+                    color: $gray-100;
+                }
+
+                .author-name {
+                }
+            }
+        }
+    }
+}
+
+.single-course-details {
+    padding: 5rem 0;
+
+    .container {
+
+        .top-part {
+            display: flex;
+            justify-content: space-between;
+            flex-direction: column;
+
+            @include lg {
+                flex-direction: row;
+            }
+
+            .top-left {
+                max-width: 45rem;
+
+                .what-you-learn {
+                    i {
+                        color: $theme;
+                        margin-right: 1rem;
+                    }
+                }
+            }
+
+            .top-right {
+                padding: 3rem;
+                border: 1px solid $gray-100;
+                border-radius: 0.2rem;
+                box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.3);
+                text-align: center;
+
+
+                @include lg {
+                    text-align: start;
+                }
+
+                h3 {
+                    margin-bottom: 2rem;
+                }
+
+                p {
+                    margin-bottom: 1.5rem;
+                    display: flex;
+                    align-items: center;
+                    position: relative;
+
+                    span {
+                        position: absolute;
+                        left: 2.5rem;
+                    }
+                }
+
+                .price-box {
+                    margin-top: 3rem;
+                    display: flex;
+
+                    h4 {
+                        margin: 0.2rem 1rem;
+                        color: $gray-500;
+                        text-decoration: line-through;
+                    }
+                }
+
+                .btn-theme-s {
+                    width: 100%;
+
+                    @include lg {
+                        width: auto;
+                    }
+                }
+            }
+        }
+
+        .program-details {
+            margin-top: 5rem;
+
+            h1 {
+                margin-bottom: 3rem;
+            }
+
+            .list-item {
+                margin-bottom: 3rem;
+                display: grid;
+                grid-template-columns: 1fr auto;
+                gap: 2rem;
+                max-width: 45rem;
+
+                .number-circle {
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    width: 5rem;
+                    height: 5rem;
+                    border: 10px solid #{$theme}20;
+                    border-radius: 100%;
+                    box-shadow: 0 0 1rem #{$theme}80;
+
+                    h4 {
+                        margin-top: 3px;
+                    }
+                }
+            }
+        }
+
+        .author-showcase {
+            display: grid;
+            grid-template-columns: auto auto;
+            border-radius: 0.3rem;
+            overflow: hidden;
+
+            img {
+                display: none;
+                height: 100%;
+                width: auto;
+
+                @include xl {
+                    display: block;
+                }
+            }
+
+            .author-details {
+                padding: 6rem;
+                background-color: $gray-900;
+                background-image: url(/images/singlecourse-pattern.svg);
+                color: $gray-600;
+
+                h5 {
+                    color: $gray-600;
+                }
+
+                h2 {
+                    color: white;
+                }
+
+                .author-social-media {
+                    margin-top: 3rem;
+                    gap: 2rem;
+                    display: grid;
+                    grid-template-rows: auto auto;
+
+                    @include lg {
+                        grid-template-columns: auto auto;
+                    }
+                }
+            }
+        }
+    }
+}

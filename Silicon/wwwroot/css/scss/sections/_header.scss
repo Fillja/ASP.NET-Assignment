@@ -43,6 +43,14 @@ header {
             display: none;
             gap: 15px;
 
+            a{
+                img{
+                    border-radius: 100%;
+                    max-width: 3rem;
+                    max-height: 3rem;
+                }
+            }
+
             @include lg {
                 display: flex;
             }
@@ -57,4 +65,7 @@ header {
             }
         }
     }
+}
+.blue-background {
+    background-color: $gray-100;
 }

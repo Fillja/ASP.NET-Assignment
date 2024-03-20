@@ -1,5 +1,5 @@
-﻿@model AccountDetailsViewModel
+﻿@model AccountSecurityViewModel
 @{
-    ViewData["Title"] = "Security";
+    ViewData["Title"] = Model.Title;
 }
 @await Html.PartialAsync("~/Views/Shared/Sections/AccountSections/_AccountSecurityPartial.cshtml");

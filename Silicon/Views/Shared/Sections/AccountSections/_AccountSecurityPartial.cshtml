@@ -1,47 +1,54 @@
-﻿@model AccountDetailsViewModel
+﻿@model AccountSecurityViewModel
 
 <div class="container">
     <section id="account-security">
             
         <aside>
             <div class="profile-info">
-                <img src="@Model.BasicForm.ProfileImage" alt="@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")" />
+                @if (Model.BasicForm.ProfileImage != null)
+                {
+                    <img src="@Model.BasicForm.ProfileImage" alt="@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")" />
+                }
+                else
+                {
+                    <img src="/images/cat.jpg" alt="Cat"/>
+                }
                 <h5>@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")</h5>
                 <p>@Model.BasicForm.Email</p>
             </div>
             
             <nav>
-                <a class="btn-transparent" asp-controller="Account" asp-action="Details">Account Details</a>
-                <a class="btn-theme-s" asp-controller="Account" asp-action="Security">Security</a>
-                <a class="btn-transparent" asp-controller="Account" asp-action="SavedCourses">Saved Courses</a>
-                <a class="btn-transparent" asp-controller="Auth" asp-action="SignOut">Sign Out</a>
+                <a class="btn-transparent" asp-controller="Account" asp-action="Details"><i class="fa-regular fa-gear"></i>Account Details</a>
+                <a class="btn-theme-s" asp-controller="Account" asp-action="Security"><i class="fa-regular fa-lock"></i>Security</a>
+                <a class="btn-transparent" asp-controller="Account" asp-action="SavedCourses"><i class="fa-light fa-bookmark"></i>Saved Courses</a>
+                <a class="btn-transparent" asp-controller="Auth" asp-action="SignOut"><i class="fa-sharp fa-regular fa-arrow-right-from-bracket"></i>Sign Out</a>
             </nav>
         </aside>
             
         <div class="security">
-            <form method="post" asp-controller="Account" asp-action="UpdatePassword">
+            <form method="post" asp-controller="Account" asp-action="ChangePassword">
                 <h2>Security</h2>
                 <h5>Password</h5>
-                <p>@Model.BasicDisplayMessage</p>
+                <p>@Model.DisplayMessage</p>
             
                 <div class="content">
             
                     <div id="form-current-password" class="input-group">
-                        <label asp-for="BasicForm.FirstName"></label>
-                        <span asp-validation-for="BasicForm.FirstName"></span>
-                        <input asp-for="BasicForm.FirstName" />
+                        <label asp-for="PasswordModel.OldPassword"></label>
+                        <span asp-validation-for="PasswordModel.OldPassword"></span>
+                        <input asp-for="PasswordModel.OldPassword" />
                     </div>
             
                     <div id="form-new-password" class="input-group">
-                        <label asp-for="BasicForm.FirstName"></label>
-                        <span asp-validation-for="BasicForm.FirstName"></span>
-                        <input asp-for="BasicForm.FirstName" />
+                        <label asp-for="PasswordModel.NewPassword"></label>
+                        <span asp-validation-for="PasswordModel.NewPassword"></span>
+                        <input asp-for="PasswordModel.NewPassword" />
                     </div>
             
                     <div id="form-confirm-password" class="input-group">
-                        <label asp-for="BasicForm.FirstName"></label>
-                        <span asp-validation-for="BasicForm.FirstName"></span>
-                        <input asp-for="BasicForm.FirstName" />
+                        <label asp-for="PasswordModel.ConfirmNewPassword"></label>
+                        <span asp-validation-for="PasswordModel.ConfirmNewPassword"></span>
+                        <input asp-for="PasswordModel.ConfirmNewPassword" />
                     </div>
             
                     <div class="form-buttons">
@@ -57,11 +64,15 @@
             <div class="delete-account">
                 <h5>Delete account</h5>
                 <p>When you delete your account, your public profile will be deactivated immediately. If you change your mind before the 14 days are up, sign in with your email and password, and we’ll send you a link to reactivate your account.</p>
-                <input type="checkbox" class="checkbox-input" asp-for="BasicForm.IsExternalAccount">
-                <label asp-for="BasicForm.FirstName"></label>
-                <button class="btn-red">Delete</button>
+                <form asp-controller="Account" asp-action="DeleteAccount" method="post" novalidate>
+                    <span asp-validation-for="DeleteModel.IsChecked"></span>
+                    <input class="checkbox-input" asp-for="DeleteModel.IsChecked">
+                    <label asp-for="DeleteModel.IsChecked"></label>
+                    <button class="btn-red" type="submit">Delete</button>
+                </form>
             </div>
                         
         </div>                    
     </section>
 </div>
+@await Html.PartialAsync("_ValidationScriptPartial")

@@ -97,7 +97,7 @@ public class UserFactory(UserRepository userRepository)
             Email = userEntity.Email!,
             Phone = userEntity.PhoneNumber!,
             Biography = userEntity.Bio,
-            ProfileImage = "images/profile-image.svg",
+            ProfileImage = userEntity.ImageUrl,
             IsExternalAccount = userEntity.IsExternalAccount,
         };
 

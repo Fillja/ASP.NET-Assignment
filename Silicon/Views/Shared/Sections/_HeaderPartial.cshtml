@@ -1,6 +1,7 @@
 ﻿@inject SignInManager<UserEntity> _signInManager
+@inject UserManager<UserEntity> _userManager
 
-<header>
+<header class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Contact" ? "blue-background" : "")">
     <div class="container">
         <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/logos/silicon-logo.svg" alt="logo"></a>
         <div id="menu">
@@ -14,7 +15,7 @@
                 {
                     <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="features">Features</a>
                 }
-                <a class="menu-link" asp-controller="Contact" asp-action="Index" asp-fragment="contact">Contact</a>
+                <a class="menu-link" asp-controller="Contact" asp-action="Index">Contact</a>
             </nav>
         </div>
 
@@ -30,8 +31,15 @@
         <div class="account-buttons">
             @if(_signInManager.IsSignedIn(User))
             {
-                <a class="btn-theme" asp-controller="Account" asp-action="Details"><i class="fa-solid fa-user"></i><span>My Account</span></a>
-                @*<a class="btn-theme" asp-controller="Account" asp-action="Details"><img src=@Model.BasicForm.ProfileImage /></a>*@
+                var userEntity = await _userManager.GetUserAsync(User);
+
+                if(userEntity!.ImageUrl != null){
+                    <a asp-controller="Account" asp-action="Details"><img src=@userEntity!.ImageUrl /></a>
+                }
+                else
+                {
+                    <a asp-controller="Account" asp-action="Details"><img src=/images/cat.jpg alt="Cat"/></a>
+                }
             }
             else
             {

@@ -52,6 +52,20 @@
     } 
 }
 
+.btn-blue {
+    @include button;
+    border: 0;
+    background: $info;
+    color: $white;
+
+    &:hover {
+        @include theme-secondary-shadow;
+        text-decoration: none;
+        background: $gray-700;
+        color: $white;
+    }
+}
+
 .btn-red {
     @include button;
     background: $danger;

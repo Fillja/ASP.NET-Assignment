@@ -26,10 +26,14 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
             if (existResult.StatusCode == StatusCode.NOT_FOUND)
             {
                 var responseResult = _userFactory.PopulateUserEntity(model);
+                var userEntity = (UserEntity)responseResult.ContentResult!;
 
-                if(responseResult.StatusCode == StatusCode.OK)
+                if (responseResult.StatusCode == StatusCode.OK)
                 {
-                    var identityResult = await _userManager.CreateAsync((UserEntity)responseResult.ContentResult!, model.Password);
+                    if (IsTeacher(userEntity.FirstName))
+                        userEntity.ImageUrl = "/images/boss-cat.jpg";
+
+                    var identityResult = await _userManager.CreateAsync(userEntity, model.Password);
 
                     if (identityResult.Succeeded)
                         return ResponseFactory.Ok("User created successfully.");
@@ -159,5 +163,12 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
         {
             return ResponseFactory.Error(ex.Message);
         }
+    }
+
+    public static bool IsTeacher (string firstName)
+    {
+        if (firstName == "Hans" || firstName == "Joakim" || firstName == "Tommy")
+            return true;
+        return false;
     }
 }
