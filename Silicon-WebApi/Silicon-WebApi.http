@@ -1,0 +1,6 @@
+@Silicon_WebApi_HostAddress = https://localhost
+
+GET {{Silicon_WebApi_HostAddress}}/
+Accept: application/json
+
+###
