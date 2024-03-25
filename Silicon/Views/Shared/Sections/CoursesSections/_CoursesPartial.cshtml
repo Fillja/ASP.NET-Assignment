@@ -1,4 +1,6 @@
-﻿<section id="courses">
+﻿@model IEnumerable<CourseEntity>
+
+<section id="courses">
     <div class="container">
         <div class="link-box">
             <i class="fa-light fa-house"></i>
@@ -20,168 +22,42 @@
         </div>
 
         <div class="content">
-            <div class="course-box">
-                <div class="image-box">
-                    <img src="/images/course-image.svg" alt="">
-                    <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                        <i class="fa-light fa-bookmark"></i>
+            @foreach (var course in Model)
+            {
+                <div class="course-box">
+                    <div class="image-box">
+                        <img src="@course.ImageName" alt="">
+                        @if (course.IsBestseller)
+                        {
+                            <div class="best-seller">Best Seller</div>
+                        }
+                        <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
+                            <i class="fa-light fa-bookmark"></i>
+                        </a>
+                    </div>
+                    <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
+                        <h5>@course.Title</h5>
+                        <p>@course.Author</p>
+                        @if(course.DiscountPrice == 0)
+                        {
+                            <p class="price">$@course.OriginalPrice</p>
+                        }
+                        else
+                        {
+                            <div class="discount-price-box">
+                                <p class="discount-price">$@course.DiscountPrice</p>
+                                <p class="original-price">$@course.OriginalPrice</p>
+                            </div>
+                        }
+                        <hr />
+                        <div class="time-rating">
+                            <p><i class="fa-light fa-clock"></i>@course.Hours hours</p>
+                            <p><i class="fa-light fa-thumbs-up"></i>@String.Format("{0:0}", course.LikesInProcent)% (@String.Format("{0:0.0}", course.LikesInNumbers / 1000)k)</p>
+                        </div>
                     </a>
                 </div>
-                <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                    <h5>HTML, CSS, Javascript Web Developer</h5>
-                    <p class>By Jenny Wilson & Marvin McKinney</p>
-                    <p class="price">$15.99</p>
-                    <hr />
-                    <div class="time-rating">
-                        <p><i class="fa-light fa-clock"></i>160 hours</p>
-                        <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                    </div>
-                </a>
-            </div>
-                        <div class="course-box">
-                <div class="image-box">
-                    <img src="/images/course-image.svg" alt="">
-                    <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                        <i class="fa-light fa-bookmark"></i>
-                    </a>
-                </div>
-                <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                    <h5>HTML, CSS, Javascript Web Developer</h5>
-                    <p class>By Jenny Wilson & Marvin McKinney</p>
-                    <p class="price">$15.99</p>
-                    <hr />
-                    <div class="time-rating">
-                        <p><i class="fa-light fa-clock"></i>160 hours</p>
-                        <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                    </div>
-                </a>
-            </div>
-            <div class="course-box">
-                <div class="image-box">
-                    <img src="/images/course-image.svg" alt="">
-                    <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                        <i class="fa-light fa-bookmark"></i>
-                    </a>
-                </div>
-                <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                    <h5>HTML, CSS, Javascript Web Developer</h5>
-                    <p class>By Jenny Wilson & Marvin McKinney</p>
-                    <p class="price">$15.99</p>
-                    <hr />
-                    <div class="time-rating">
-                        <p><i class="fa-light fa-clock"></i>160 hours</p>
-                        <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                    </div>
-                </a>
-            </div>
-            <div class="course-box">
-                <div class="image-box">
-                    <img src="/images/course-image.svg" alt="">
-                    <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                        <i class="fa-light fa-bookmark"></i>
-                    </a>
-                </div>
-                <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                    <h5>HTML, CSS, Javascript Web Developer</h5>
-                    <p class>By Jenny Wilson & Marvin McKinney</p>
-                    <p class="price">$15.99</p>
-                    <hr />
-                    <div class="time-rating">
-                        <p><i class="fa-light fa-clock"></i>160 hours</p>
-                        <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                    </div>
-                </a>
-            </div>
-            <div class="course-box">
-                <div class="image-box">
-                    <img src="/images/course-image.svg" alt="">
-                    <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                        <i class="fa-light fa-bookmark"></i>
-                    </a>
-                </div>
-                <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                    <h5>HTML, CSS, Javascript Web Developer</h5>
-                    <p class>By Jenny Wilson & Marvin McKinney</p>
-                    <p class="price">$15.99</p>
-                    <hr />
-                    <div class="time-rating">
-                        <p><i class="fa-light fa-clock"></i>160 hours</p>
-                        <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                    </div>
-                </a>
-            </div>
-            <div class="course-box">
-                <div class="image-box">
-                    <img src="/images/course-image.svg" alt="">
-                    <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                        <i class="fa-light fa-bookmark"></i>
-                    </a>
-                </div>
-                <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                    <h5>HTML, CSS, Javascript Web Developer</h5>
-                    <p class>By Jenny Wilson & Marvin McKinney</p>
-                    <p class="price">$15.99</p>
-                    <hr />
-                    <div class="time-rating">
-                        <p><i class="fa-light fa-clock"></i>160 hours</p>
-                        <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                    </div>
-                </a>
-            </div>
-            <div class="course-box">
-                <div class="image-box">
-                    <img src="/images/course-image.svg" alt="">
-                    <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                        <i class="fa-light fa-bookmark"></i>
-                    </a>
-                </div>
-                <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                    <h5>HTML, CSS, Javascript Web Developer</h5>
-                    <p class>By Jenny Wilson & Marvin McKinney</p>
-                    <p class="price">$15.99</p>
-                    <hr />
-                    <div class="time-rating">
-                        <p><i class="fa-light fa-clock"></i>160 hours</p>
-                        <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                    </div>
-                </a>
-            </div>
-                        <div class="course-box">
-                <div class="image-box">
-                    <img src="/images/course-image.svg" alt="">
-                    <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                        <i class="fa-light fa-bookmark"></i>
-                    </a>
-                </div>
-                <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                    <h5>HTML, CSS, Javascript Web Developer</h5>
-                    <p class>By Jenny Wilson & Marvin McKinney</p>
-                    <p class="price">$15.99</p>
-                    <hr />
-                    <div class="time-rating">
-                        <p><i class="fa-light fa-clock"></i>160 hours</p>
-                        <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                    </div>
-                </a>
-            </div>
-            <div class="course-box">
-                <div class="image-box">
-                    <img src="/images/course-image.svg" alt="">
-                    <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                        <i class="fa-light fa-bookmark"></i>
-                    </a>
-                </div>
-                <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                    <h5>HTML, CSS, Javascript Web Developer</h5>
-                    <p class>By Jenny Wilson & Marvin McKinney</p>
-                    <p class="price">$15.99</p>
-                    <hr />
-                    <div class="time-rating">
-                        <p><i class="fa-light fa-clock"></i>160 hours</p>
-                        <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                    </div>
-                </a>
-            </div>
+            }
+
             <div class="button-box"></div>
         </div>
 
@@ -193,5 +69,6 @@
             </div>
             <img src="/images/work-with-us.svg" alt="">
         </div>
+
     </div>
 </section>

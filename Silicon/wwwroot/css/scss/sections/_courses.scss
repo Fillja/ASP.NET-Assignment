@@ -91,6 +91,16 @@
                         width: 100%;
                     }
 
+                    .best-seller {
+                        background-color: $success;
+                        padding: 0.2rem;
+                        border-radius: 10%;
+                        position: absolute;
+                        top: 1rem;
+                        left: 1rem;
+                        color: white;
+                    }
+
                     .bookmark {
                         text-decoration: none;
                         color: $gray-900;
@@ -101,8 +111,8 @@
                         padding-top: 0.3rem;
                         text-align: center;
                         position: absolute;
-                        right: 2rem;
-                        top: 2rem;
+                        right: 1rem;
+                        top: 1rem;
 
                         &:hover {
                             background-color: $theme;
@@ -127,6 +137,24 @@
                         @include text-lg;
                         font-weight: 700;
                         color: $theme;
+                    }
+
+                    .discount-price-box {
+                        display: flex;
+                        gap: 1rem;
+
+                        .discount-price {
+                            @include text-lg;
+                            color: $danger;
+                            font-weight: 700;
+                        }
+
+                        .original-price {
+                            @include text-lg;
+                            text-decoration: line-through;
+                            color: $gray-600;
+                            font-weight: 700;
+                        }
                     }
 
                     .time-rating {

@@ -1,5 +1,4 @@
-﻿using Infrastructure.Entities;
-using Infrastructure.Factories;
+﻿using Infrastructure.Factories;
 using Infrastructure.Models;
 using Infrastructure.Models.Course;
 using Infrastructure.Repositories;

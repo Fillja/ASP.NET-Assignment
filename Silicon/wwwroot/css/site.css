@@ -1772,6 +1772,15 @@ footer .container .social-media {
 #courses .container .content .course-box .image-box img {
   width: 100%;
 }
+#courses .container .content .course-box .image-box .best-seller {
+  background-color: #22C55E;
+  padding: 0.2rem;
+  border-radius: 10%;
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  color: white;
+}
 #courses .container .content .course-box .image-box .bookmark {
   text-decoration: none;
   color: #0B0F19;
@@ -1782,8 +1791,8 @@ footer .container .social-media {
   padding-top: 0.3rem;
   text-align: center;
   position: absolute;
-  right: 2rem;
-  top: 2rem;
+  right: 1rem;
+  top: 1rem;
 }
 #courses .container .content .course-box .image-box .bookmark:hover {
   background-color: #6366F1;
@@ -1807,6 +1816,29 @@ footer .container .social-media {
   font-size: 18px !important;
   font-weight: 700;
   color: #6366F1;
+}
+#courses .container .content .course-box .course-text-box .discount-price-box {
+  display: flex;
+  gap: 1rem;
+}
+#courses .container .content .course-box .course-text-box .discount-price-box .discount-price {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px !important;
+  color: #EF4444;
+  font-weight: 700;
+}
+#courses .container .content .course-box .course-text-box .discount-price-box .original-price {
+  line-height: 160%;
+  font-weight: 400;
+  color: #565973;
+  font-family: "Manrope", sans-serif;
+  font-size: 18px !important;
+  text-decoration: line-through;
+  color: #9397AD;
+  font-weight: 700;
 }
 #courses .container .content .course-box .course-text-box .time-rating {
   display: flex;

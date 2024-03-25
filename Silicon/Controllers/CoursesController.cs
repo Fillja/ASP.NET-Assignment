@@ -1,5 +1,7 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using Infrastructure.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 
 namespace Silicon.Controllers;
 
@@ -7,10 +9,16 @@ namespace Silicon.Controllers;
 public class CoursesController : Controller
 {
     [Route("/courses")]
-    public IActionResult Index()
+    public async Task<IActionResult> Index()
     {
         ViewData["Title"] = "Courses";
-        return View();
+
+        using var http = new HttpClient();
+        var response = await http.GetAsync("https://localhost:7130/api/courses?key=MWVhMGJjZjgtZGZhMC00ZjA4LWJiMjctZDQ2NWU0YjQxZWQ5");
+        var json = await response.Content.ReadAsStringAsync();
+        var data = JsonConvert.DeserializeObject<IEnumerable<CourseEntity>>(json);
+
+        return View(data);
     }
 
     [Route("/singlecourse")]
