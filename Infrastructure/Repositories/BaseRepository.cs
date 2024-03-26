@@ -63,6 +63,7 @@ public abstract class BaseRepository<TEntity>(DataContext context) where TEntity
         try
         {
             var exists = await ExistsAsync(predicate);
+
             if (exists.StatusCode == StatusCode.EXISTS)
             {
                 _context.Set<TEntity>().Update(entity);
