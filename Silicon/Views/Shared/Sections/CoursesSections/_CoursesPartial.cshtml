@@ -1,4 +1,4 @@
-﻿@model IEnumerable<CourseEntity>
+﻿@model CourseViewModel
 
 <section id="courses">
     <div class="container">
@@ -20,42 +20,60 @@
                 </div>
             </div>
         </div>
+        <p>@Model.DisplayMessage</p>
 
         <div class="content">
-            @foreach (var course in Model)
+            @if(Model.List!.Count() != 0)
             {
-                <div class="course-box">
-                    <div class="image-box">
-                        <img src="@course.ImageName" alt="">
-                        @if (course.IsBestseller)
-                        {
-                            <div class="best-seller">Best Seller</div>
-                        }
-                        <a asp-controller="Courses" asp-action="Bookmark" class="bookmark">
-                            <i class="fa-light fa-bookmark"></i>
+                @foreach (var course in Model.List!)
+                {
+                    <div class="course-box">
+                        <div class="image-box">
+                            <img src="@course.ImageName" alt="">
+                            @if (course.IsBestseller)
+                            {
+                                <div class="best-seller">Best Seller</div>
+                            }
+                            <a asp-controller="Courses" asp-action="Bookmark" asp-route-id="@course.Id" class="bookmark">
+                                @if(Model.SavedList != null)
+                                {
+                                    if(Model.SavedList.Any(savedItem => savedItem.CourseId == course.Id))
+                                    {
+                                        <i class="fa-sharp fa-solid fa-bookmark saved"></i>
+                                    }
+                                    else
+                                    {
+                                        <i class="fa-light fa-bookmark"></i>
+                                    }
+                                }
+                                else
+                                {
+                                    <i class="fa-light fa-bookmark"></i>
+                                }
+                            </a>
+                        </div>
+                        <a asp-controller="Courses" asp-action="SingleCourse" asp-route-id="@course.Id" class="course-text-box">
+                            <h5>@course.Title</h5>
+                            <p>@course.Author</p>
+                            @if (course.DiscountPrice == 0)
+                            {
+                                <p class="price">$@course.OriginalPrice</p>
+                            }
+                            else
+                            {
+                                <div class="discount-price-box">
+                                    <p class="discount-price">$@course.DiscountPrice</p>
+                                    <p class="original-price">$@course.OriginalPrice</p>
+                                </div>
+                            }
+                            <hr />
+                            <div class="time-rating">
+                                <p><i class="fa-light fa-clock"></i>@course.Hours hours</p>
+                                <p><i class="fa-light fa-thumbs-up"></i>@String.Format("{0:0}", course.LikesInProcent)% (@String.Format("{0:0.0}", course.LikesInNumbers / 1000)k)</p>
+                            </div>
                         </a>
                     </div>
-                    <a asp-controller="Courses" asp-action="SingleCourse" class="course-text-box">
-                        <h5>@course.Title</h5>
-                        <p>@course.Author</p>
-                        @if(course.DiscountPrice == 0)
-                        {
-                            <p class="price">$@course.OriginalPrice</p>
-                        }
-                        else
-                        {
-                            <div class="discount-price-box">
-                                <p class="discount-price">$@course.DiscountPrice</p>
-                                <p class="original-price">$@course.OriginalPrice</p>
-                            </div>
-                        }
-                        <hr />
-                        <div class="time-rating">
-                            <p><i class="fa-light fa-clock"></i>@course.Hours hours</p>
-                            <p><i class="fa-light fa-thumbs-up"></i>@String.Format("{0:0}", course.LikesInProcent)% (@String.Format("{0:0.0}", course.LikesInNumbers / 1000)k)</p>
-                        </div>
-                    </a>
-                </div>
+                }
             }
 
             <div class="button-box"></div>

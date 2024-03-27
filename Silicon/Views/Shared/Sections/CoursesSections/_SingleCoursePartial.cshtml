@@ -1,22 +1,24 @@
-﻿<section class="single-course-showcase">
+﻿@model CourseEntity
+
+<section class="single-course-showcase">
+    <div class="background-image" style="background-image: url('@Model.ImageName');"></div>
     <div class="container">
         <div class="link-box">
             <a href=""><i class="fa-thin fa-house"></i>Home</a>
             <p class="link-box-arrows"><i class="fa-solid fa-chevrons-right"></i></p>
             <a href="">Courses</a>
             <p class="link-box-arrows"><i class="fa-solid fa-chevrons-right"></i></p>
-            <p>Fullstack Web Developer Course from Scratch</p>
+            <p>@Model.Title</p>
         </div>
         <div class="tags">
-            <div class="tag-box best-seller">
-                Best Seller
-            </div>
-            <div class="tag-box digital">
-                Digital
-            </div>
+            @if (Model.IsBestseller)
+            {
+                <div class="tag-box best-seller">Best Seller</div>
+            }
+            <div class="tag-box digital">Digital</div>
         </div>
-        <h1>Fullstack Web Developer Course from Scratch</h1>
-        <p>Egestas feugiat lorem eu neque suspendisse ullamcorper scelerisque aliquam mauris.</p>
+        <h1 class="title-h1">@Model.Title</h1>
+        <p class="title-p">Egestas feugiat lorem eu neque suspendisse ullamcorper scelerisque aliquam mauris.</p>
 
         <div class="rating-box">
             <div class="rating">
@@ -28,15 +30,15 @@
                 <p>(1.2K reviews)</p>
             </div>
 
-            <p class="likes"><i class="fa-light fa-thumbs-up"></i> 5K likes</p>
+            <p class="likes"><i class="fa-light fa-thumbs-up"></i>(@String.Format("{0:0.0}", Model.LikesInNumbers / 1000)k)</p>
 
-            <p class="length"><i class="fa-light fa-clock"></i> 148 hours</p>
+            <p class="length"><i class="fa-light fa-clock"></i>@Model.Hours hours</p>
         </div>
         <div class="author-box">
             <img src="~/images/fullstack-author.png" alt="">
             <div class="text-box">
                 <h5>Created by</h5>
-                <p>Albert Flores</p>
+                <p>@Model.Author</p>
             </div>
         </div>
     </div>
@@ -68,8 +70,15 @@
                 <p><i class="fa-regular fa-infinity"></i><span>Full lifetime access</span></p>
                 <p><i class="fa-regular fa-trophy"></i><span>Certificate of completion</span></p>
                 <div class="price-box">
-                    <h2>$28.99</h2>
-                    <h4>$49.00</h4>
+                    @if (Model.DiscountPrice == 0)
+                    {
+                        <h2>$@Model.OriginalPrice</h2>
+                    }
+                    else
+                    {
+                        <h2>$@Model.DiscountPrice</h2>
+                        <h4>$@Model.OriginalPrice</h4>
+                    }
                 </div>
                 <button class="btn-theme-s">Join course</button>
             </div>
@@ -172,7 +181,7 @@
             <img src="~/images/fullstack-author.png" alt="">
             <div class="author-details">
                 <h5>Learn from the best</h5>
-                <h2>Albert Flores</h2>
+                <h2>@Model.Author</h2>
                 <p>Dolor ipsum amet cursus quisque porta adipiscing. Lorem convallis malesuada sed maecenas. Ac dui at vitae mauris cursus in nullam porta sem. Quis pellentesque elementum ac bibendum. Nunc aliquam in tortor facilisis. Vulputate eget risus, metus phasellus. Pellentesque faucibus amet, eleifend diam quam condimentum convallis ultricies placerat. Duis habitasse placerat amet, odio pellentesque rhoncus, feugiat at. Eget pellentesque tristique felis magna fringilla.</p>
                 <div class="author-social-media">
                     <button class="btn-red"><i class="fa-brands fa-youtube"></i> 240k subscribers</button>

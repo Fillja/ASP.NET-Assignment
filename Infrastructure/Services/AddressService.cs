@@ -19,15 +19,15 @@ public class AddressService(AddressRepository addressRepository, AddressFactory 
         try
         {
             Expression<Func<AddressEntity, bool>> adressExpression = x => x.Addressline_1 == model.AddressLine1 && x.Addressline_2 == model.AddressLine2 && x.City == model.City && x.PostalCode == model.PostalCode;
-            var result = await _addressRepository.ExistsAsync(adressExpression);
+            var existResult = await _addressRepository.ExistsAsync(adressExpression);
 
-            if (result.StatusCode == StatusCode.EXISTS)
+            if (existResult.StatusCode == StatusCode.EXISTS)
             {
                 var getResult = await _addressRepository.GetOneAsync(adressExpression);
                 if (getResult.StatusCode == StatusCode.OK)
                     return ResponseFactory.Ok(getResult.ContentResult!, "Address found successfully.");
             }
-            else if (result.StatusCode == StatusCode.NOT_FOUND)
+            else if (existResult.StatusCode == StatusCode.NOT_FOUND)
             {
                 var newAdressEntity = _addressFactory.PopulateAddressEntity(model);
                 var createResult = await _addressRepository.CreateAsync(newAdressEntity);

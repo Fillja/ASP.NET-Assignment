@@ -1,5 +1,5 @@
-﻿@{
-    ViewData["Title"] = "Courses";
+﻿@model CourseViewModel
+@{
+    ViewData["Title"] = Model.Title;
 }
-
 @await Html.PartialAsync("~/Views/Shared/Sections/CoursesSections/_CoursesPartial.cshtml");

@@ -108,7 +108,7 @@ public abstract class BaseRepository<TEntity>(DataContext context) where TEntity
         }
     }
 
-    public virtual async Task<ResponseResult> ExistsAsync (Expression<Func<TEntity, bool>> predicate)
+    public virtual async Task<ResponseResult> ExistsAsync(Expression<Func<TEntity, bool>> predicate)
     {
         try
         {

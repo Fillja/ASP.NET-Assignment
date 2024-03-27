@@ -25,13 +25,19 @@ builder.Services.AddAuthentication().AddGoogle(x =>
     x.CallbackPath = "/signin-google";
 });
 
-builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<AddressRepository>();
+
 builder.Services.AddScoped<AddressService>();
+builder.Services.AddScoped<UserService>();
+builder.Services.AddScoped<CourseService>();
+
+builder.Services.AddScoped<UserRepository>();
+builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<CourseRepository>();
+builder.Services.AddScoped<SavedCoursesRepository>();
 
 builder.Services.AddScoped<UserFactory>();
 builder.Services.AddScoped<AddressFactory>();
+builder.Services.AddScoped<CourseFactory>();
 
 builder.Services.AddDefaultIdentity<UserEntity>(x =>
 {

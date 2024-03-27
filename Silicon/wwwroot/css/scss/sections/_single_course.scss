@@ -1,9 +1,18 @@
 .single-course-showcase {
-    background-image: url("/images/fullstack-background.svg");
-    background-size: cover;
-    background-repeat: no-repeat;
+    position: relative;
+
+    .background-image {
+        background-size: cover;
+        background-repeat: no-repeat;
+        position: absolute;
+        z-index: -1;
+        filter: brightness(50%);
+        width: 100%;
+        height: 100%;
+    }
 
     .container {
+        z-index: 1;
         color: white;
         padding: 5rem 0;
 
@@ -37,6 +46,7 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 1rem;
+            -webkit-text-stroke-width: 0px;
 
             .tag-box {
                 border-radius: 0.3rem;
@@ -55,11 +65,11 @@
             }
         }
 
-        h1 {
+        .title-h1 {
             color: $gray-100;
         }
 
-        p {
+        .title-p {
             color: $gray-500;
             margin-bottom: 3rem;
         }
