@@ -18,8 +18,16 @@ builder.Services.AddDbContext<DataContext>(x =>
 builder.Services.AddScoped<CourseRepository>();
 builder.Services.AddScoped<CourseService>();
 builder.Services.AddScoped<CourseFactory>();
+
 builder.Services.AddScoped<SavedCoursesRepository>();
 
+builder.Services.AddScoped<SubscriberRepository>();
+builder.Services.AddScoped<SubscriberService>();
+builder.Services.AddScoped<SubscriberFactory>();
+
+builder.Services.AddScoped<ContactRepository>();
+builder.Services.AddScoped<ContactFactory>();
+builder.Services.AddScoped<ContactService>();
 
 var app = builder.Build();
 

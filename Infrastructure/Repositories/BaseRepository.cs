@@ -81,6 +81,19 @@ public abstract class BaseRepository<TEntity>(DataContext context) where TEntity
             return ResponseFactory.Error(ex.Message);
         }
     }
+    public virtual async Task<ResponseResult> DeleteAsync(TEntity entity)
+    {
+        try
+        {
+            _context.Set<TEntity>().Remove(entity);
+            await _context.SaveChangesAsync();
+            return ResponseFactory.Ok("Successfully deleted.");
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
+    }
 
     public virtual async Task<ResponseResult> DeleteAsync(Expression<Func<TEntity, bool>> predicate)
     {

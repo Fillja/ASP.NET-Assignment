@@ -34,7 +34,7 @@
                 var userEntity = await _userManager.GetUserAsync(User);
 
                 if(userEntity!.ImageUrl != null){
-                    <a asp-controller="Account" asp-action="Details"><img src=@userEntity!.ImageUrl /></a>
+                    <a asp-controller="Account" asp-action="Details"><img src=/@userEntity!.ImageUrl /></a>
                 }
                 else
                 {

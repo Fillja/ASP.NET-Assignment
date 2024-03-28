@@ -21,7 +21,7 @@ public class CoursesController(UserManager<UserEntity> userManager, CourseServic
     {
         var viewModel = new CourseViewModel();
 
-        var courseListResult = await _courseService.GetCourseListAsync();
+        var courseListResult = await _courseService.ApiCallGetCourseListAsync();
         if(courseListResult.StatusCode == Infrastructure.Models.StatusCode.OK)
             viewModel.List = (IEnumerable<CourseEntity>)courseListResult.ContentResult!;
 
@@ -42,7 +42,7 @@ public class CoursesController(UserManager<UserEntity> userManager, CourseServic
     [Route("/singlecourse")]
     public async Task<IActionResult> SingleCourse(string id)
     {
-        var courseResult = await _courseService.GetOneCourseAsync(id);
+        var courseResult = await _courseService.ApiCallGetOneCourseAsync(id);
         if(courseResult.StatusCode == Infrastructure.Models.StatusCode.OK)
             return View((CourseEntity)courseResult.ContentResult!);
 

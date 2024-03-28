@@ -1,4 +1,4 @@
-﻿@model AccountDetailsViewModel
+﻿@model AccountSavedCoursesViewModel
 
 <div class="container">
     <section id="account-security">
@@ -7,7 +7,7 @@
             <div class="profile-info">
                 @if (Model.BasicForm.ProfileImage != null)
                 {
-                    <img src="@Model.BasicForm.ProfileImage" alt="@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")" />
+                    <img src="/@Model.BasicForm.ProfileImage" alt="@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")" />
                 }
                 else
                 {
@@ -29,70 +29,53 @@
 
             <div class="title-box">
                 <h2>Saved items</h2>
-                <button class="btn-red-transparent"><i class="fa-regular fa-trash"></i>Delete all</button>
+                <a asp-controller="Account" asp-action="DeleteAll" class="btn-red-transparent"><i class="fa-regular fa-trash"></i>Delete all</a>
             </div>
+            <p>@Model.DisplayMessage</p>
 
             <div class="content">
-                <div class="course-box">
-                    <div class="image-box">
-                        <img src="/images/course-image.svg" alt="">
-                        <a href="#" class="bookmark">
-                            <i class="fa-light fa-bookmark"></i>
-                        </a>
-                    </div>
-                    <a href="#" class="course-text-box">
-                        <h5>HTML, CSS, Javascript Web Developer</h5>
-                        <p class>By Jenny Wilson & Marvin McKinney</p>
-                        <p class="price">$15.99</p>
-                        <hr />
-                        <div class="time-rating">
-                            <p><i class="fa-light fa-clock"></i>160 hours</p>
-                            <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                        </div>
-                    </a>
-                </div>
 
-                <div class="course-box">
-                    <div class="image-box">
-                        <img src="/images/course-image.svg" alt="">
-                        <a href="#" class="bookmark">
-                            <i class="fa-light fa-bookmark"></i>
-                        </a>
-                    </div>
-                    <a href="#" class="course-text-box">
-                        <h5>HTML, CSS, Javascript Web Developer</h5>
-                        <p class>By Jenny Wilson & Marvin McKinney</p>
-                        <p class="price">$15.99</p>
-                        <hr />
-                        <div class="time-rating">
-                            <p><i class="fa-light fa-clock"></i>160 hours</p>
-                            <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
+                @foreach(var courses in Model.AllCourses)
+                {
+                    @if(Model.SavedCourses.Any(x => x.CourseId == courses.Id))
+                    {
+                        <div class="course-box">
+                            <div class="image-box">
+                                <img src="/@courses.ImageName" alt="">
+                                @if (courses.IsBestseller)
+                                {
+                                    <div class="best-seller">Best Seller</div>
+                                }
+                                <a asp-controller="Account" asp-action="Bookmark" asp-route-id="@courses.Id" class="bookmark">
+                                     <i class="fa-sharp fa-solid fa-bookmark saved"></i>
+                                </a>
+                            </div>
+                            <a asp-controller="Courses" asp-action="SingleCourse" asp-route-id="@courses.Id" class="course-text-box">
+                                <h5>@courses.Title</h5>
+                                <p>By @courses.Author</p>
+                                @if (courses.DiscountPrice == 0)
+                                {
+                                    <p class="price">$@courses.OriginalPrice</p>
+                                }
+                                else
+                                {
+                                    <div class="discount-price-box">
+                                        <p class="discount-price">$@courses.DiscountPrice</p>
+                                        <p class="original-price">$@courses.OriginalPrice</p>
+                                    </div>
+                                }
+                                <hr />
+                                <div class="time-rating">
+                                    <p><i class="fa-light fa-clock"></i>@courses.Hours hours</p>
+                                    <p><i class="fa-light fa-thumbs-up"></i>@String.Format("{0:0}", courses.LikesInProcent)% (@String.Format("{0:0.0}", courses.LikesInNumbers / 1000)k)</p>
+                                </div>
+                            </a>
                         </div>
-                    </a>
-                </div>
+                    }
+                }
 
-                <div class="course-box">
-                    <div class="image-box">
-                        <img src="/images/course-image.svg" alt="">
-                        <a href="#" class="bookmark">
-                            <i class="fa-light fa-bookmark"></i>
-                        </a>
-                    </div>
-                    <a href="#" class="course-text-box">
-                        <h5>HTML, CSS, Javascript Web Developer</h5>
-                        <p class>By Jenny Wilson & Marvin McKinney</p>
-                        <p class="price">$15.99</p>
-                        <hr />
-                        <div class="time-rating">
-                            <p><i class="fa-light fa-clock"></i>160 hours</p>
-                            <p><i class="fa-light fa-thumbs-up"></i>92% (3.1k)</p>
-                        </div>
-                    </a>
-                </div>
             </div>
         </div>
-
-
 
     </section>
 </div>

@@ -27,7 +27,7 @@ public class CoursesController(CourseService courseService, CourseRepository cou
             if (responseResult.StatusCode == Infrastructure.Models.StatusCode.OK)
                 return Created($"/api/courses/{responseResult.ContentResult}", responseResult.ContentResult);
 
-            if(responseResult.StatusCode == Infrastructure.Models.StatusCode.EXISTS)
+            else if(responseResult.StatusCode == Infrastructure.Models.StatusCode.EXISTS)
                 return Conflict();
         }
 

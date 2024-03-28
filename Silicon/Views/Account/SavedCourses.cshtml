@@ -1,5 +1,5 @@
-﻿@model AccountDetailsViewModel
+﻿@model AccountSavedCoursesViewModel
 @{
-    ViewData["Title"] = "Saved courses";
+    ViewData["Title"] = Model.Title;
 }
 @await Html.PartialAsync("~/Views/Shared/Sections/AccountSections/_AccountSavedCoursesPartial.cshtml");

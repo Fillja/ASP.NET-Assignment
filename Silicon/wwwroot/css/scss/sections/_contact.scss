@@ -4,6 +4,15 @@
     .container {
         padding: 5rem 0;
 
+        .input-validation-error {
+            background-color: #fef1f1
+        }
+
+        .field-validation-error {
+            display: block;
+            color: $danger;
+        }
+
         .link-box {
             align-items: center;
             text-align: center;
@@ -98,7 +107,8 @@
                     }
 
                     textarea {
-                        padding: 4rem;
+                        padding: 1rem;
+                        height: 12rem;
                         border-radius: 0.5rem !important;
                         border: 0.063rem solid $gray-400;
                         resize: none;

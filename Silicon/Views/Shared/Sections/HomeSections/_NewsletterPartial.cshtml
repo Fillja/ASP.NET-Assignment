@@ -1,4 +1,4 @@
-﻿@model NewsLetterModel
+﻿@model HomeViewModel
 
 <section id="newsletter">
     <div class="container">
@@ -7,46 +7,47 @@
             <h1>Don't want to Miss Anything?</h1>
             <img src="/images/arrows.svg" alt="">
         </div>
-        <form asp-controller="Home" asp-action="Subscribe" novalidate>
+        <form method="post" asp-controller="Home" asp-action="Subscribe" novalidate>
             <div class="signup">
                 <h5>Sign up for<br>Newsletters</h5>
                 <div class="content">
                     <div class="newsletter-boxes">
-                        <input asp-for="DailyNewsletter"/>
-                        <label asp-for="DailyNewsletter"></label>
+                        <input asp-for="@Model.NewsLetter.DailyNewsletter"/>
+                        <label asp-for="@Model.NewsLetter.DailyNewsletter"></label>
                     </div>
                     <div class="newsletter-boxes">
-                        <input asp-for="AdvertisingUpdates"/>
-                        <label asp-for="AdvertisingUpdates"></label>
+                        <input asp-for="@Model.NewsLetter.AdvertisingUpdates" />
+                        <label asp-for="@Model.NewsLetter.AdvertisingUpdates"></label>
                     </div>
                     <div class="newsletter-boxes">
-                        <input asp-for="WeekInReview" />
-                        <label asp-for="WeekInReview"></label>
+                        <input asp-for="@Model.NewsLetter.WeekInReview" />
+                        <label asp-for="@Model.NewsLetter.WeekInReview"></label>
                     </div>
                     <div class="newsletter-boxes">
-                        <input asp-for="EventUpdates" />
-                        <label asp-for="EventUpdates"></label>
+                        <input asp-for="@Model.NewsLetter.EventUpdates" />
+                        <label asp-for="@Model.NewsLetter.EventUpdates"></label>
                     </div>
                     <div class="newsletter-boxes">
-                        <input asp-for="StartupsWeekly"/>
-                        <label asp-for="StartupsWeekly"></label>
+                        <input asp-for="@Model.NewsLetter.StartupsWeekly" />
+                        <label asp-for="@Model.NewsLetter.StartupsWeekly"></label>
                     </div>
                     <div class="newsletter-boxes">
-                        <input asp-for="Podcasts"/>
-                        <label asp-for="Podcasts"></label>
+                        <input asp-for="@Model.NewsLetter.Podcasts" />
+                        <label asp-for="@Model.NewsLetter.Podcasts"></label>
                     </div>
                 </div>
             </div>
 
-            <span asp-validation-for="Email"></span>
+            <span asp-validation-for="@Model.NewsLetter.Email"></span>
             <div class="subscribe">
                 <div class="input-div">
                     <i class="fa-light fa-envelope"></i>
-                    <input asp-for="Email"/>
+                    <input asp-for="@Model.NewsLetter.Email" />
                 </div>
-                <button class="btn-theme" type="submit" asp-fragment="newsletter">Subscribe*</button>
+                <button class="btn-theme" type="submit">Subscribe*</button>
             </div>
             <p>* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy.</a></p>
+            <p>@Model.DisplayMessage</p>
         </form>
     </div>
 </section>

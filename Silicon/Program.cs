@@ -26,18 +26,28 @@ builder.Services.AddAuthentication().AddGoogle(x =>
 });
 
 
+builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<AddressFactory>();
 builder.Services.AddScoped<AddressService>();
-builder.Services.AddScoped<UserService>();
-builder.Services.AddScoped<CourseService>();
 
 builder.Services.AddScoped<UserRepository>();
-builder.Services.AddScoped<AddressRepository>();
+builder.Services.AddScoped<UserFactory>();
+builder.Services.AddScoped<UserService>();
+
 builder.Services.AddScoped<CourseRepository>();
+builder.Services.AddScoped<CourseFactory>();
+builder.Services.AddScoped<CourseService>();
+
 builder.Services.AddScoped<SavedCoursesRepository>();
 
-builder.Services.AddScoped<UserFactory>();
-builder.Services.AddScoped<AddressFactory>();
-builder.Services.AddScoped<CourseFactory>();
+builder.Services.AddScoped<SubscriberRepository>();
+builder.Services.AddScoped<SubscriberFactory>();
+builder.Services.AddScoped<SubscriberService>();
+
+builder.Services.AddScoped<ContactRepository>();
+builder.Services.AddScoped<ContactFactory>();
+builder.Services.AddScoped<ContactService>();
+
 
 builder.Services.AddDefaultIdentity<UserEntity>(x =>
 {

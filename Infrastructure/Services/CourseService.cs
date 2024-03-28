@@ -78,7 +78,7 @@ public class CourseService(CourseRepository courseRepository, CourseFactory cour
         }
     }
 
-    public async Task<ResponseResult> GetOneCourseAsync(string id)
+    public async Task<ResponseResult> ApiCallGetOneCourseAsync(string id)
     {
         try
         {
@@ -98,7 +98,7 @@ public class CourseService(CourseRepository courseRepository, CourseFactory cour
         }
     }
 
-    public async Task<ResponseResult> GetCourseListAsync()
+    public async Task<ResponseResult> ApiCallGetCourseListAsync()
     {
         try
         {
@@ -141,6 +141,37 @@ public class CourseService(CourseRepository courseRepository, CourseFactory cour
                 return ResponseFactory.NotFound();
 
             return ResponseFactory.Error();
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
+    }
+
+    public async Task<ResponseResult> DeleteAllSavedCourses(UserEntity user)
+    {
+        try
+        {
+            var savedListResult = await GetAllSavedCoursesAsync(user);
+            if (savedListResult.StatusCode == StatusCode.OK)
+            {
+                var savedList = (IEnumerable<SavedCoursesEntity>)savedListResult.ContentResult!;
+                foreach (var savedCourse in savedList)
+                {
+                    var deleteResult = await _savedCoursesRepository.DeleteAsync(savedCourse);
+                    if (deleteResult.StatusCode == StatusCode.OK)
+                        continue;
+
+                    return ResponseFactory.Error("Something went wrong with deleting the courses.");
+                }
+
+                return ResponseFactory.Ok("Successfully deleted all saved courses.");
+            }
+
+            else if(savedListResult.StatusCode == StatusCode.NOT_FOUND)
+                return ResponseFactory.NotFound("Could not find any courses.");
+
+            return ResponseFactory.Error("Something went wrong with deleting the courses.");
         }
         catch (Exception ex)
         {
