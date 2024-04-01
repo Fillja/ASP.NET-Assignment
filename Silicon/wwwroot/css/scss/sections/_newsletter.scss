@@ -1,10 +1,6 @@
 #newsletter {
     padding: 6rem 0;
-    background-color: $gray-100;
-
-    .input-validation-error {
-        background-color: #fef1f1
-    }
+    background-color: var(--color-gray-100);
 
     .field-validation-error {
         display: block;
@@ -83,12 +79,13 @@
 
             .input-div {
                 display: flex;
-                border: solid 1px $gray-400;
+                border: solid 1px var(--color-gray-400);
                 border-radius: 10px;
                 padding: 0.7rem 1rem;
-                background-color: white;
+                background-color: var(--color-gray-001);
 
                 input {
+                    background-color: var(--color-gray-001);
                     margin-left: 0.5rem;
                     width: 100%;
                     border: none;
@@ -97,7 +94,7 @@
                 i {
                     padding-top: 0.3rem;
                     font-size: 18px;
-                    color: $gray-600;
+                    color: var(--color-gray-600);
                 }
             }
         }

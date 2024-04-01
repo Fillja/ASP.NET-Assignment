@@ -4,9 +4,9 @@
     <div class="background-image" style="background-image: url('@Model.ImageName');"></div>
     <div class="container">
         <div class="link-box">
-            <a href=""><i class="fa-thin fa-house"></i>Home</a>
+            <a asp-controller="Home" asp-action="Index"><i class="fa-thin fa-house"></i>Home</a>
             <p class="link-box-arrows"><i class="fa-solid fa-chevrons-right"></i></p>
-            <a href="">Courses</a>
+            <a asp-controller="Courses" asp-action="Index">Courses</a>
             <p class="link-box-arrows"><i class="fa-solid fa-chevrons-right"></i></p>
             <p>@Model.Title</p>
         </div>
@@ -80,7 +80,7 @@
                         <h4>$@Model.OriginalPrice</h4>
                     }
                 </div>
-                <button class="btn-theme-s">Join course</button>
+                <a asp-controller="Courses" asp-action="Purchase" class="btn-theme-s">Join course</a>
             </div>
         </div>
 
@@ -184,8 +184,8 @@
                 <h2>@Model.Author</h2>
                 <p>Dolor ipsum amet cursus quisque porta adipiscing. Lorem convallis malesuada sed maecenas. Ac dui at vitae mauris cursus in nullam porta sem. Quis pellentesque elementum ac bibendum. Nunc aliquam in tortor facilisis. Vulputate eget risus, metus phasellus. Pellentesque faucibus amet, eleifend diam quam condimentum convallis ultricies placerat. Duis habitasse placerat amet, odio pellentesque rhoncus, feugiat at. Eget pellentesque tristique felis magna fringilla.</p>
                 <div class="author-social-media">
-                    <button class="btn-red"><i class="fa-brands fa-youtube"></i> 240k subscribers</button>
-                    <button class="btn-blue"><i class="fa-brands fa-square-facebook"></i> 180k followers</button>
+                    <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ" class="btn-red"><i class="fa-brands fa-youtube"></i> 240k subscribers</a>
+                    <a href="https://www.facebook.com/groups/1227101530780145" class="btn-blue"><i class="fa-brands fa-square-facebook"></i> 180k followers</a>
                 </div>
             </div>
         </div>

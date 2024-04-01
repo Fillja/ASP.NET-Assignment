@@ -1,12 +1,8 @@
 #contact {
-    background-color: $gray-100;
+    background-color: var(--color-gray-100);
 
     .container {
         padding: 5rem 0;
-
-        .input-validation-error {
-            background-color: #fef1f1
-        }
 
         .field-validation-error {
             display: block;
@@ -74,9 +70,9 @@
 
             .form-box {
                 position: inherit;
-                background-color: $white;
+                background-color: var(--color-white);
                 border-radius: 0.5rem;
-                box-shadow: 2px 2px 2px 2px $gray-300;
+                box-shadow: 2px 2px 2px 2px var(--color-gray-300);
                 padding: 4rem;
                 height: 50rem;
                 width: 100%;
@@ -94,7 +90,7 @@
                     input {
                         padding: 0.5rem;
                         border-radius: 0.5rem !important;
-                        border: 0.063rem solid $gray-400;
+                        border: 0.063rem solid var(--color-gray-400);
 
                         &::placeholder {
                             opacity: 0.4;
@@ -110,7 +106,7 @@
                         padding: 1rem;
                         height: 12rem;
                         border-radius: 0.5rem !important;
-                        border: 0.063rem solid $gray-400;
+                        border: 0.063rem solid var(--color-gray-400);
                         resize: none;
 
                         &::placeholder {
@@ -129,11 +125,11 @@
 
                     #service {
                         width: 100%;
-                        border: solid 1px $gray-400;
+                        border: solid 1px var(--color-gray-400);
                         padding: 0.7rem;
                         border-radius: 0.5rem;
-                        background-color: white;
-                        color: $gray-700;
+                        background-color: var(--color-white);
+                        color: var(--color-gray-700);
                     }
                 }
 

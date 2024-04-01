@@ -1,143 +1,145 @@
 #account-security {
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    gap: 0px;
-    margin-bottom: 70px;
 
-    @include lg {
-        gap: 150px;
-    }
+    .container {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+        gap: 0px;
+        padding-bottom: 70px;
 
-    .field-validation-error {
-        color: $danger;
-    }
+        @include lg {
+            gap: 150px;
+        }
 
-    aside {
-        border-right: 1px solid $gray-300;
-        padding-right: 20px;
+        .field-validation-error {
+            color: $danger;
+        }
 
-        .profile-info {
-            margin: 20px;
-            text-align: center;
+        aside {
+            border-right: 1px solid var(--color-gray-300);
+            padding-right: 20px;
 
-            img {
-                border-radius: 100%;
-                max-width: 6rem;
-                max-height: 6rem;
+            .profile-info {
+                margin: 20px;
+                text-align: center;
+
+                img {
+                    border-radius: 100%;
+                    max-width: 6rem;
+                    max-height: 6rem;
+                }
+
+                h5 {
+                    margin-top: 15px;
+                    margin-bottom: 0;
+                }
+
+                p {
+                    @include text-m;
+                }
             }
+
+            nav {
+                margin-top: 50px;
+                text-align: left;
+
+                a {
+                    margin: 10px 0;
+                    text-align: left;
+                    justify-content: flex-start;
+                }
+
+                .btn-theme-s {
+                    text-align: left;
+                    justify-content: flex-start;
+                }
+            }
+        }
+
+        .security {
+            margin-top: 50px;
+            width: 100%;
 
             h5 {
-                margin-top: 15px;
-                margin-bottom: 0;
+                color: $theme;
             }
 
-            p {
-                @include text-m;
-            }
-        }
-
-        nav {
-            margin-top: 50px;
-            text-align: left;
-
-            a {
-                margin: 10px 0;
-                text-align: left;
-                justify-content: flex-start;
-            }
-
-            .btn-theme-s {
-                text-align: left;
-                justify-content: flex-start;
-            }
-        }
-    }
-
-    .security {
-        margin-top: 50px;
-        width: 100%;
-
-        h5 {
-            color: $theme;
-        }
-
-        .input-group {
-            display: grid;
-
-            input {
-                padding: 1rem;
-                border-radius: 0.5rem !important;
-                border: 0.063rem solid $gray-400;
-
-                &::placeholder {
-                    opacity: 0.4;
-                }
-
-                &.input-validation-error {
-                    border: 0.063 rem solid $danger !important;
-                    background-color: #fef1f1
-                }
-            }
-        }
-
-        form {
-            padding: 1rem;
-
-            .content {
+            .input-group {
                 display: grid;
-                gap: 1rem 2rem;
-                grid-template-columns: 1fr;
-                grid-template-areas: "current-pw" "new-pw" "confirm-pw" "buttons" "buttons";
 
-                @include lg {
-                    grid-template-columns: 1fr 1fr;
-                    grid-template-areas: "current-pw nothing" "new-pw confirm-pw" "buttons buttons";
-                }
+                input {
+                    padding: 1rem;
+                    border-radius: 0.5rem !important;
+                    border: 0.063rem solid var(--color-gray-400);
 
-                #form-current-password {
-                    grid-area: current-pw;
-                }
-
-                #form-new-password {
-                    grid-area: new-pw;
-                }
-
-                #form-confirm-password {
-                    grid-area: confirm-pw;
-                }
-
-                .form-buttons {
-                    grid-area: buttons;
-                    margin: 20px 0;
-                    gap: 20px;
-
-                    @include lg {
-                        display: flex;
+                    &::placeholder {
+                        opacity: 0.4;
                     }
 
-                    button {
-                        display: block;
-                        width: 100%;
-                        margin: 1rem 0;
+                    &.input-validation-error {
+                        border: 0.063 rem solid $danger !important;
+                    }
+                }
+            }
+
+            form {
+                padding: 1rem;
+
+                .content {
+                    display: grid;
+                    gap: 1rem 2rem;
+                    grid-template-columns: 1fr;
+                    grid-template-areas: "current-pw" "new-pw" "confirm-pw" "buttons" "buttons";
+
+                    @include lg {
+                        grid-template-columns: 1fr 1fr;
+                        grid-template-areas: "current-pw nothing" "new-pw confirm-pw" "buttons buttons";
+                    }
+
+                    #form-current-password {
+                        grid-area: current-pw;
+                    }
+
+                    #form-new-password {
+                        grid-area: new-pw;
+                    }
+
+                    #form-confirm-password {
+                        grid-area: confirm-pw;
+                    }
+
+                    .form-buttons {
+                        grid-area: buttons;
+                        margin: 20px 0;
+                        gap: 20px;
 
                         @include lg {
-                            margin: 0;
-                            width: auto;
+                            display: flex;
+                        }
+
+                        button {
+                            display: block;
+                            width: 100%;
+                            margin: 1rem 0;
+
+                            @include lg {
+                                margin: 0;
+                                width: auto;
+                            }
                         }
                     }
                 }
             }
-        }
 
-        .delete-account {
-            padding: 2rem;
+            .delete-account {
+                padding: 2rem;
 
-            .checkbox-input {
-                margin-right: 0.5rem;
-            }
+                .checkbox-input {
+                    margin-right: 0.5rem;
+                }
 
-            .btn-red {
-                margin-top: 2rem;
+                .btn-red {
+                    margin-top: 2rem;
+                }
             }
         }
     }

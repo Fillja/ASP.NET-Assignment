@@ -46,7 +46,7 @@
                 </div>
                 <button class="btn-theme" type="submit">Subscribe*</button>
             </div>
-            <p>* Yes, I agree to the <a href="#">terms</a> and <a href="#">privacy policy.</a></p>
+            <p>* Yes, I agree to the <a asp-controller="Security" asp-action="Terms">terms</a> and <a asp-controller="Security" asp-action="Privacy">privacy policy.</a></p>
             <p>@Model.DisplayMessage</p>
         </form>
     </div>

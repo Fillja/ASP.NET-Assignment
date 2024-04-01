@@ -1,204 +1,207 @@
-#account-security {
-    display: grid;
-    grid-template-columns: 2fr 5fr;
-    gap: 30px;
-    margin-bottom: 70px;
+#account-saved-courses {
 
-    @include lg {
-        gap: 100px;
-    }
+    .container {
+        display: grid;
+        grid-template-columns: 2fr 5fr;
+        gap: 30px;
+        padding-bottom: 70px;
 
-    .field-validation-error {
-        color: $danger;
-    }
-
-    aside {
-        border-right: 1px solid $gray-300;
-        padding-right: 20px;
-
-        .profile-info {
-            margin: 20px;
-            text-align: center;
-
-            img {
-                border-radius: 100%;
-                max-width: 6rem;
-                max-height: 6rem;
-            }
-
-            h5 {
-                margin-top: 15px;
-                margin-bottom: 0;
-            }
-
-            p {
-                @include text-m;
-            }
+        @include lg {
+            gap: 100px;
         }
 
-        nav {
-            margin-top: 50px;
-            text-align: left;
-
-            a {
-                margin: 10px 0;
-                text-align: left;
-                justify-content: flex-start;
-            }
-
-            .btn-theme-s {
-                text-align: left;
-                justify-content: flex-start;
-            }
+        .field-validation-error {
+            color: $danger;
         }
-    }
 
-    .saved-items {
-        padding: 2rem 0;
+        aside {
+            border-right: 1px solid var(--color-gray-300);
+            padding-right: 20px;
 
-        .title-box {
-            display: block;
-            text-align: center;
+            .profile-info {
+                margin: 20px;
+                text-align: center;
 
-            button {
-                width: 100%;
+                img {
+                    border-radius: 100%;
+                    max-width: 6rem;
+                    max-height: 6rem;
+                }
 
-                @include md {
-                    width: auto;
+                h5 {
+                    margin-top: 15px;
+                    margin-bottom: 0;
+                }
+
+                p {
+                    @include text-m;
                 }
             }
 
-            @include md {
-                display: flex;
-                justify-content: space-between;
-                align-items: center;
+            nav {
+                margin-top: 50px;
+                text-align: left;
+
+                a {
+                    margin: 10px 0;
+                    text-align: left;
+                    justify-content: flex-start;
+                }
+
+                .btn-theme-s {
+                    text-align: left;
+                    justify-content: flex-start;
+                }
             }
         }
 
-        .content {
-            display: grid;
-            justify-content: start;
-            grid-template-columns: auto;
-            gap: 2rem;
+        .saved-items {
             padding: 2rem 0;
 
-            @include lg {
-                justify-content: center;
+            .title-box {
+                display: block;
+                text-align: center;
+
+                button {
+                    width: 100%;
+
+                    @include md {
+                        width: auto;
+                    }
+                }
+
+                @include md {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                }
             }
 
-            @include xl {
-                justify-content: center;
-                grid-template-columns: 1fr 1fr;
-            }
+            .content {
+                display: grid;
+                justify-content: start;
+                grid-template-columns: auto;
+                gap: 2rem;
+                padding: 2rem 0;
 
-            .course-box {
-                max-width: 26rem;
-                box-shadow: 1px 1px 1px 1px $gray-300;
-                border-radius: 0.5rem;
-                overflow: hidden;
+                @include lg {
+                    justify-content: center;
+                }
 
-                .image-box {
-                    position: relative;
+                @include xl {
+                    justify-content: center;
+                    grid-template-columns: 1fr 1fr;
+                }
 
-                    img {
-                        width: 100%;
+                .course-box {
+                    max-width: 26rem;
+                    box-shadow: 1px 1px 1px 1px var(--color-gray-300);
+                    border-radius: 0.5rem;
+                    overflow: hidden;
+
+                    .image-box {
+                        position: relative;
+
+                        img {
+                            width: 100%;
+                        }
+
+                        .best-seller {
+                            background-color: $success;
+                            padding: 0.2rem;
+                            border-radius: 10%;
+                            position: absolute;
+                            top: 1rem;
+                            left: 1rem;
+                            color: white;
+                        }
+
+                        .bookmark {
+                            text-decoration: none;
+                            color: var(--color-gray-900);
+                            background-color: var(--color-white);
+                            border-radius: 2rem;
+                            width: 2.5rem;
+                            height: 2.5rem;
+                            padding-top: 0.3rem;
+                            text-align: center;
+                            position: absolute;
+                            right: 1rem;
+                            top: 1rem;
+
+                            .saved {
+                                color: $theme;
+                            }
+
+                            &:hover {
+                                background-color: $theme;
+                            }
+                        }
                     }
 
-                    .best-seller {
-                        background-color: $success;
-                        padding: 0.2rem;
-                        border-radius: 10%;
-                        position: absolute;
-                        top: 1rem;
-                        left: 1rem;
-                        color: white;
-                    }
-
-                    .bookmark {
+                    .course-text-box {
+                        display: block;
                         text-decoration: none;
-                        color: $gray-900;
-                        background-color: white;
-                        border-radius: 2rem;
-                        width: 2.5rem;
-                        height: 2.5rem;
-                        padding-top: 0.3rem;
-                        text-align: center;
-                        position: absolute;
-                        right: 1rem;
-                        top: 1rem;
+                        padding: 2rem 2rem 0 2rem;
 
-                        .saved {
+                        h5 {
+                            color: var(--color-gray-800);
+                        }
+
+                        p {
+                            color: var(--color-gray-700);
+                        }
+
+                        hr {
+                            display: none;
+
+                            @include md {
+                                display: block;
+                            }
+                        }
+
+                        .price {
+                            @include text-lg;
+                            font-weight: 700;
                             color: $theme;
                         }
 
-                        &:hover {
-                            background-color: $theme;
-                        }
-                    }
-                }
-
-                .course-text-box {
-                    display: block;
-                    text-decoration: none;
-                    padding: 2rem 2rem 0 2rem;
-
-                    h5 {
-                        color: $gray-800;
-                    }
-
-                    p {
-                        color: $gray-700;
-                    }
-
-                    hr {
-                        display: none;
-
-                        @include md {
-                            display: block;
-                        }
-                    }
-
-                    .price {
-                        @include text-lg;
-                        font-weight: 700;
-                        color: $theme;
-                    }
-
-                    .discount-price-box {
-                        display: flex;
-                        gap: 1rem;
-
-                        .discount-price {
-                            @include text-lg;
-                            color: $danger;
-                            font-weight: 700;
-                        }
-
-                        .original-price {
-                            @include text-lg;
-                            text-decoration: line-through;
-                            color: $gray-600;
-                            font-weight: 700;
-                        }
-                    }
-
-                    .time-rating {
-                        display: none;
-                        gap: 1rem;
-                        color: $gray-600;
-
-                        i {
-                            margin-right: 0.5rem;
-                        }
-
-                        @include md {
+                        .discount-price-box {
                             display: flex;
-                        }
-                    }
+                            gap: 1rem;
 
-                    &:hover {
-                        opacity: 0.6;
-                        background-color: $gray-200;
+                            .discount-price {
+                                @include text-lg;
+                                color: $danger;
+                                font-weight: 700;
+                            }
+
+                            .original-price {
+                                @include text-lg;
+                                text-decoration: line-through;
+                                color: var(--color-gray-600);
+                                font-weight: 700;
+                            }
+                        }
+
+                        .time-rating {
+                            display: none;
+                            gap: 1rem;
+                            color: var(--color-gray-600);
+
+                            i {
+                                margin-right: 0.5rem;
+                            }
+
+                            @include md {
+                                display: flex;
+                            }
+                        }
+
+                        &:hover {
+                            opacity: 0.6;
+                            background-color: var(--color-gray-200);
+                        }
                     }
                 }
             }

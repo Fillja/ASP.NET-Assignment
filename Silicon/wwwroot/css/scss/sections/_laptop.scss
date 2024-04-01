@@ -3,6 +3,7 @@
     justify-content: center;
     position: relative;
     height: 50dvw;
+    background-color: white;
 
     .h1-white {
         z-index: 0;
@@ -18,7 +19,7 @@
 
         @include lg {
             @include h1;
-            color: white;        
+            color: white;
         }
     }
 
@@ -26,14 +27,17 @@
         margin-left: 20px;
         margin-top: 30px;
         opacity: 0;
+        color: black;
 
         @include md {
             @include h2;
             opacity: 100;
+            color: black;
         }
 
         @include lg {
             @include h1;
+            color: black;
         }
     }
 

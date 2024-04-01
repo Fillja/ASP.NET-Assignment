@@ -1,6 +1,11 @@
-﻿<section class="error-section">
+﻿@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark") ? true : false;
+}
+
+<section class="error-section">
     <div class="container">
-        <img src="/images/404.svg" alt="">
+        <img src="/images/@(isDark ? "404-dark.svg" : "404-light.svg" )" alt="404-picture">
         <h1>
             Ooops!
         </h1>

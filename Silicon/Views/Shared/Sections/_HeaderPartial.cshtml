@@ -1,9 +1,14 @@
 ﻿@inject SignInManager<UserEntity> _signInManager
 @inject UserManager<UserEntity> _userManager
 
-<header class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Contact" ? "blue-background" : "")">
+@{
+    var themeMode = Context.Request.Cookies["ThemeMode"] ?? "light";
+    var isDark = (themeMode == "dark") ? true : false;
+}
+
+<header class="@(ViewContext.RouteData.Values["controller"]!.ToString() == "Contact" ? "blue-background" : "") @(ViewContext.RouteData.Values["controller"]!.ToString() == "Courses" && ViewContext.RouteData.Values["action"]!.ToString() == "SingleCourse" ? "styled-background" : "")">
     <div class="container">
-        <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/logos/silicon-logo.svg" alt="logo"></a>
+        <a id="logo" asp-controller="Home" asp-action="Index"><img src="~/images/logos/@(isDark ? "silicon-dark.svg" : "silicon-light.svg" )" alt="Silicon Logo"></a>
         <div id="menu">
             <nav>
                 <a class="menu-link" asp-controller="Home" asp-action="Index" asp-fragment="showcase">Showcase</a>
@@ -22,7 +27,7 @@
         <div class="btn-switch">
             <label>Light</label>
             <label class="switch" for="switch-mode">
-                <input type="checkbox" id="switch-mode" />
+                <input type="checkbox" id="switch-mode" checked="@isDark" />
                 <span class="slider round"></span>
             </label>
             <label>Dark</label>

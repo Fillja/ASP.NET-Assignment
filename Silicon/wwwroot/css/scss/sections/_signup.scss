@@ -5,12 +5,7 @@
         max-width: 35rem;
 
         label {
-            color: $gray-900;
-        }
-
-
-        .input-validation-error {
-            background-color: #fef1f1
+            color: var(--color-gray-900);
         }
 
         .field-validation-error {
@@ -48,7 +43,7 @@
         .input-box {
             display: block;
             padding: 0.8rem;
-            border: 1px $gray-400 solid;
+            border: 1px var(--color-gray-400) solid;
             border-radius: 0.3rem;
             width: 100%;
         }

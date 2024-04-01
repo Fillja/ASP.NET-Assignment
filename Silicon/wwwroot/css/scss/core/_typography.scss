@@ -4,17 +4,17 @@ $font-manrope: 'Manrope', sans-serif;
 @mixin standard-text {
     line-height: 160%;
     font-weight: 400;
-    color: $gray-700;
+    color: var(--color-gray-700);
     font-family: $font-manrope;
 }
 
 @mixin standard-heading {
     @include standard-text();
     font-weight: 800;
-    color: $gray-900;
+    color: var(--color-gray-900);
 }
 
-@mixin text-nav { @include standard-text; font-size: 16px; color: $gray-800; font-weight: 600 !important; }
+@mixin text-nav { @include standard-text; font-size: 16px; color: var(--color-gray-800); font-weight: 600 !important; }
 
 @mixin text-xs { @include standard-text; font-size: 12px !important;}
 @mixin text-s { @include standard-text; font-size: 14px !important; }

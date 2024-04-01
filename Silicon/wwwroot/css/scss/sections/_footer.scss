@@ -1,7 +1,7 @@
 footer {
     padding: 50px 0 30px 0;
     @include text-m;
-    color: $gray-600;
+    color: var(--color-gray-600);
 
     .container {
         text-align: center;

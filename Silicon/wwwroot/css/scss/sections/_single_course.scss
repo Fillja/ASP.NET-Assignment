@@ -1,5 +1,6 @@
 .single-course-showcase {
     position: relative;
+    background-color: transparent;
 
     .background-image {
         background-size: cover;
@@ -46,7 +47,6 @@
             display: flex;
             gap: 1rem;
             margin-bottom: 1rem;
-            -webkit-text-stroke-width: 0px;
 
             .tag-box {
                 border-radius: 0.3rem;
@@ -65,11 +65,11 @@
             }
         }
 
-        .title-h1 {
+        h1 {
             color: $gray-100;
         }
 
-        .title-p {
+        p {
             color: $gray-500;
             margin-bottom: 3rem;
         }
@@ -130,6 +130,7 @@
 
 .single-course-details {
     padding: 5rem 0;
+    background-color: var(--color-gray-001);
 
     .container {
 
@@ -236,6 +237,7 @@
         .author-showcase {
             display: grid;
             grid-template-columns: auto auto;
+            border: 1px solid var(--color-gray-300);
             border-radius: 0.3rem;
             overflow: hidden;
 
@@ -252,7 +254,7 @@
             .author-details {
                 padding: 6rem;
                 background-color: $gray-900;
-                background-image: url(/images/singlecourse-pattern.svg);
+                background-image: url(/images/courses/background-pattern.svg);
                 color: $gray-600;
 
                 h5 {
