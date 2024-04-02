@@ -11,4 +11,6 @@ public class DataContext(DbContextOptions<DataContext> options) : IdentityDbCont
     public DbSet<SavedCoursesEntity> SavedCourses { get; set;}
     public DbSet<SubscriberEntity> Subscribers { get; set; }
     public DbSet<ContactEntity> Contacts { get; set; }
+    public DbSet<CategoryEntity> Categories { get; set; }
+    public DbSet<CourseCategoryEntity> CourseCategories { get; set; }
 }

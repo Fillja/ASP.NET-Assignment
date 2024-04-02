@@ -38,6 +38,10 @@ builder.Services.AddScoped<CourseRepository>();
 builder.Services.AddScoped<CourseFactory>();
 builder.Services.AddScoped<CourseService>();
 
+builder.Services.AddScoped<CategoryRepository>();
+
+builder.Services.AddScoped<CourseCategoryRepository>();
+
 builder.Services.AddScoped<SavedCoursesRepository>();
 
 builder.Services.AddScoped<SubscriberRepository>();

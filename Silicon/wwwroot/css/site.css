@@ -1799,14 +1799,45 @@ footer .container .social-media {
 #courses .container .title-box .categories-box {
   display: flex;
   gap: 2rem;
+  /*                #categories {
+                      width: 50%;
+                      border: solid 1px var(--color-gray-400);
+                      border-radius: 8px;
+                      padding: 0.5rem 7rem 0.5rem 1rem;
+                      background-color: var(--color-white);
+                      color: var(--color-gray-700);
+
+                      .select-options {
+                          display: none;
+                      }
+                  }*/
 }
-#courses .container .title-box .categories-box #categories {
-  width: 50%;
-  border: solid 1px var(--color-gray-400);
+#courses .container .title-box .categories-box .select {
+  position: relative;
+  min-width: 300px;
+}
+#courses .container .title-box .categories-box .select .selected {
+  padding: 8px 16px;
   border-radius: 8px;
-  padding: 0.5rem 7rem 0.5rem 1rem;
+  border: 1px solid var(--color-gray-400);
+  cursor: pointer;
+}
+#courses .container .title-box .categories-box .select .select-options {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  right: 0;
   background-color: var(--color-white);
-  color: var(--color-gray-700);
+  border: 1px solid var(--color-gray-400);
+  z-index: 10;
+}
+#courses .container .title-box .categories-box .select .select-options .option {
+  padding: 10px;
+  cursor: pointer;
+}
+#courses .container .title-box .categories-box .select .select-options .option:hover {
+  background-color: var(--color-gray-400);
 }
 #courses .container .title-box .categories-box .input-div {
   display: flex;

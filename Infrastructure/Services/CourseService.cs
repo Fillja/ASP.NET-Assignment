@@ -118,6 +118,26 @@ public class CourseService(CourseRepository courseRepository, CourseFactory cour
         }
     }
 
+    public async Task<ResponseResult> ApiCallGetCourseListAsync(string category, string searchQuery, int pageNumber, int pageSize)
+    {
+        try
+        {
+            using var http = new HttpClient();
+            var response = await http.GetAsync($"https://localhost:7130/api/courses/getall?key=MWVhMGJjZjgtZGZhMC00ZjA4LWJiMjctZDQ2NWU0YjQxZWQ5&category={Uri.UnescapeDataString(category)}&searchQuery={Uri.UnescapeDataString(searchQuery)}&pageNumber={pageNumber}&pageSize={pageSize}");
+            var json = await response.Content.ReadAsStringAsync();
+            var data = JsonConvert.DeserializeObject<IEnumerable<CourseEntity>>(json);
+
+            if (data != null)
+                return ResponseFactory.Ok(data);
+
+            return ResponseFactory.NotFound();
+        }
+        catch (Exception ex)
+        {
+            return ResponseFactory.Error(ex.Message);
+        }
+    }
+
     public async Task<ResponseResult> GetAllSavedCoursesAsync(UserEntity user)
     {
         try

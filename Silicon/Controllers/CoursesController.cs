@@ -4,7 +4,6 @@ using Infrastructure.Services;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Newtonsoft.Json;
 using Silicon.ViewModels.Courses;
 
 namespace Silicon.Controllers;
@@ -17,13 +16,13 @@ public class CoursesController(UserManager<UserEntity> userManager, CourseServic
     private readonly SavedCoursesRepository _savedCoursesRepository = savedCoursesRepository;
 
     [Route("/courses")]
-    public async Task<IActionResult> Index()
+    public async Task<IActionResult> Index(string category = "", string searchQuery = "", int pageNumber = 1, int pageSize = 3)
     {
         var viewModel = new CourseViewModel();
 
-        var courseListResult = await _courseService.ApiCallGetCourseListAsync();
+        var courseListResult = await _courseService.ApiCallGetCourseListAsync(category, searchQuery, pageNumber, pageSize);
         if(courseListResult.StatusCode == Infrastructure.Models.StatusCode.OK)
-            viewModel.List = (IEnumerable<CourseEntity>)courseListResult.ContentResult!;
+            viewModel.CourseList = (IEnumerable<CourseEntity>)courseListResult.ContentResult!;
 
         var user = await _userManager.GetUserAsync(User);
         if(user != null)
