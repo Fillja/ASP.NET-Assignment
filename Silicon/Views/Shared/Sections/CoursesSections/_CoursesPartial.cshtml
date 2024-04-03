@@ -16,12 +16,18 @@
                     <div class="selected">All categories</div>
                     <div class="select-options">
                         <div class="option" data-value="all">All categories</div>
-                        <div class="option" data-value="Test">Test categories</div>
+                        @if (Model.CategoryList!.Count() != 0)
+                        {
+                            @foreach(var category in Model.CategoryList!)
+                            {
+                                <div class="option" data-value="@category.CategoryName">@category.CategoryName</div>
+                            }
+                        }
                     </div>
                 </div>
 
                 <div class="input-div">
-                    <input type="text" placeholder="Search courses">
+                    <input id="searchQuery" name="searchQuery" placeholder="Search courses">
                     <i class="fa-light fa-magnifying-glass"></i>
                 </div>
 
@@ -82,9 +88,23 @@
                     </div>
                 }
             }
-
-            <div class="button-box"></div>
         </div>
+        @if (Model.Pagination != null && Model.Pagination.TotalPages > 1)
+        {
+            <div class="pagination">
+                @for (int i = 1; i <= Model.Pagination.TotalPages; i++)
+                {
+                    if (i == Model.Pagination.CurrentPage)
+                    {
+                        <span class="btn-theme">@i</span>
+                    }
+                    else
+                    {
+                        <a class="btn-gray" href="@Url.Action("Index", new { pageNumber = i, pageSize = Model.Pagination.PageSize})">@i</a>
+                    }
+                }
+            </div>
+        }
 
         <div class="work-with-us">
             <div class="text-box">

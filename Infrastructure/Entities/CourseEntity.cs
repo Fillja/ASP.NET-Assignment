@@ -12,4 +12,5 @@ public class CourseEntity
     public decimal DiscountPrice { get; set; }
     public decimal LikesInProcent { get; set; }
     public decimal LikesInNumbers { get; set; }
+    public virtual ICollection<CourseCategoryEntity>? CourseCategories { get; set;}
 }

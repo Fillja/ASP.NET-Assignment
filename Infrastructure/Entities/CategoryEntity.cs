@@ -8,4 +8,6 @@ public class CategoryEntity
     public string Id { get; set; } = Guid.NewGuid().ToString();
 
     public string CategoryName { get; set; } = null!;
+
+    public virtual ICollection<CourseCategoryEntity>? CourseCategories { get; set; }
 }
