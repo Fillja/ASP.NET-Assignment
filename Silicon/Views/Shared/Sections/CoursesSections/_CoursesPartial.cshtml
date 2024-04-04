@@ -36,57 +36,64 @@
         <p>@Model.DisplayMessage</p>
 
         <div class="content">
-            @if (Model.CourseList!.Count() != 0)
+            @if(Model.CourseList != null)
             {
-                @foreach (var course in Model.CourseList!)
+                @if (Model.CourseList!.Count() != 0)
                 {
-                    <div class="course-box">
-                        <div class="image-box">
-                            <img src="@course.ImageName" alt="">
-                            @if (course.IsBestseller)
-                            {
-                                <div class="best-seller">Best Seller</div>
-                            }
-                            <a asp-controller="Courses" asp-action="Bookmark" asp-route-id="@course.Id" class="bookmark">
-                                @if(Model.SavedList != null)
+                    @foreach (var course in Model.CourseList!)
+                    {
+                        <div class="course-box">
+                            <div class="image-box">
+                                <img src="@course.ImageName" alt="">
+                                @if (course.IsBestseller)
                                 {
-                                    if(Model.SavedList.Any(savedItem => savedItem.CourseId == course.Id))
+                                    <div class="best-seller">Best Seller</div>
+                                }
+                                <a asp-controller="Courses" asp-action="Bookmark" asp-route-id="@course.Id" class="bookmark">
+                                    @if (Model.SavedList != null)
                                     {
-                                        <i class="fa-sharp fa-solid fa-bookmark saved"></i>
+                                        if (Model.SavedList.Any(savedItem => savedItem.CourseId == course.Id))
+                                        {
+                                            <i class="fa-sharp fa-solid fa-bookmark saved"></i>
+                                        }
+                                        else
+                                        {
+                                            <i class="fa-light fa-bookmark"></i>
+                                        }
                                     }
                                     else
                                     {
                                         <i class="fa-light fa-bookmark"></i>
                                     }
+                                </a>
+                            </div>
+                            <a asp-controller="Courses" asp-action="SingleCourse" asp-route-id="@course.Id" class="course-text-box">
+                                <h5>@course.Title</h5>
+                                <p>@course.Author</p>
+                                @if (course.DiscountPrice == 0)
+                                {
+                                    <p class="price">$@course.OriginalPrice</p>
                                 }
                                 else
                                 {
-                                    <i class="fa-light fa-bookmark"></i>
+                                    <div class="discount-price-box">
+                                        <p class="discount-price">$@course.DiscountPrice</p>
+                                        <p class="original-price">$@course.OriginalPrice</p>
+                                    </div>
                                 }
+                                <hr />
+                                <div class="time-rating">
+                                    <p><i class="fa-light fa-clock"></i>@course.Hours hours</p>
+                                    <p><i class="fa-light fa-thumbs-up"></i>@String.Format("{0:0}", course.LikesInProcent)% (@String.Format("{0:0.0}", course.LikesInNumbers / 1000)k)</p>
+                                </div>
                             </a>
                         </div>
-                        <a asp-controller="Courses" asp-action="SingleCourse" asp-route-id="@course.Id" class="course-text-box">
-                            <h5>@course.Title</h5>
-                            <p>@course.Author</p>
-                            @if (course.DiscountPrice == 0)
-                            {
-                                <p class="price">$@course.OriginalPrice</p>
-                            }
-                            else
-                            {
-                                <div class="discount-price-box">
-                                    <p class="discount-price">$@course.DiscountPrice</p>
-                                    <p class="original-price">$@course.OriginalPrice</p>
-                                </div>
-                            }
-                            <hr />
-                            <div class="time-rating">
-                                <p><i class="fa-light fa-clock"></i>@course.Hours hours</p>
-                                <p><i class="fa-light fa-thumbs-up"></i>@String.Format("{0:0}", course.LikesInProcent)% (@String.Format("{0:0.0}", course.LikesInNumbers / 1000)k)</p>
-                            </div>
-                        </a>
-                    </div>
+                    }
                 }
+            }
+            else
+            {
+                <h2>No courses found...</h2>
             }
         </div>
         @if (Model.Pagination != null && Model.Pagination.TotalPages > 1)
