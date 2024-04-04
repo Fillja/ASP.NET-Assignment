@@ -4,8 +4,8 @@ header {
     .container {
         display: grid;
         align-items: center;
-        grid-template-columns: 1fr auto;
-        grid-template-areas: "logo mobile";
+        grid-template-columns: 1fr 1fr 1fr;
+        grid-template-areas: "logo switch buttons";
         gap: 40px;
 
         @include lg {
@@ -33,7 +33,6 @@ header {
 
         .btn-switch {
             grid-area: switch;
-            display: none;
 
             @include lg {
                 display: block;
@@ -42,10 +41,15 @@ header {
 
         .account-buttons {
             grid-area: buttons;
-            display: none;
             gap: 15px;
 
             a {
+                font-size: 10px;
+
+                @include md {
+                    font-size: 14px;
+                }
+
                 img {
                     border-radius: 100%;
                     max-width: 3rem;
