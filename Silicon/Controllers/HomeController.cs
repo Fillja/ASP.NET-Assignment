@@ -1,5 +1,4 @@
-﻿using Infrastructure.Models.Home;
-using Infrastructure.Services;
+﻿using Infrastructure.Services;
 using Microsoft.AspNetCore.Mvc;
 using Silicon.ViewModels.Home;
 

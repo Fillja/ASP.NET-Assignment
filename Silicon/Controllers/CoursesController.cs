@@ -10,11 +10,10 @@ using Silicon.ViewModels.Courses;
 namespace Silicon.Controllers;
 
 [Authorize]
-public class CoursesController(UserManager<UserEntity> userManager, CourseService courseService, SavedCoursesRepository savedCoursesRepository, CategoryRepository categoryRepository) : Controller
+public class CoursesController(UserManager<UserEntity> userManager, CourseService courseService, CategoryRepository categoryRepository) : Controller
 {
     private readonly UserManager<UserEntity> _userManager = userManager;
     private readonly CourseService _courseService = courseService;
-    private readonly SavedCoursesRepository _savedCoursesRepository = savedCoursesRepository;
     private readonly CategoryRepository _categoryRepository = categoryRepository;
 
     [Route("/courses")]

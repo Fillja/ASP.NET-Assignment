@@ -404,6 +404,24 @@ a:hover {
   color: var(--color-white);
 }
 
+.btn-circle {
+  border-radius: 100%;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  width: 26px;
+  height: 26px;
+  background-color: var(--color-gray-300);
+  color: var(--color-black);
+  transition: all 0.25s ease-in-out;
+}
+.btn-circle:hover {
+  text-decoration: none;
+  background: var(--color-gray-700);
+  color: var(--color-white);
+  cursor: pointer;
+}
+
 .btn-switch {
   display: flex;
   align-items: center;
@@ -1274,13 +1292,25 @@ footer .container .social-media {
   padding-right: 20px;
 }
 .account-details-section #account-details aside .profile-info {
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  margin: 20px;
 }
-.account-details-section #account-details aside .profile-info img {
+.account-details-section #account-details aside .profile-info .image {
+  display: flex;
+  position: relative;
+}
+.account-details-section #account-details aside .profile-info .image .btn-circle {
+  position: absolute;
+  bottom: 0;
+  right: 4px;
+}
+.account-details-section #account-details aside .profile-info .image img {
   border-radius: 100%;
-  max-width: 6rem;
-  max-height: 6rem;
+  max-width: 7rem;
+  max-height: 7rem;
 }
 .account-details-section #account-details aside .profile-info h5 {
   margin-top: 15px;
@@ -1451,13 +1481,25 @@ footer .container .social-media {
   padding-right: 20px;
 }
 #account-security .container aside .profile-info {
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  margin: 20px;
 }
-#account-security .container aside .profile-info img {
+#account-security .container aside .profile-info .image {
+  display: flex;
+  position: relative;
+}
+#account-security .container aside .profile-info .image .btn-circle {
+  position: absolute;
+  bottom: 0;
+  right: 4px;
+}
+#account-security .container aside .profile-info .image img {
   border-radius: 100%;
-  max-width: 6rem;
-  max-height: 6rem;
+  max-width: 7rem;
+  max-height: 7rem;
 }
 #account-security .container aside .profile-info h5 {
   margin-top: 15px;
@@ -1578,13 +1620,25 @@ footer .container .social-media {
   padding-right: 20px;
 }
 #account-saved-courses .container aside .profile-info {
-  margin: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
+  margin: 20px;
 }
-#account-saved-courses .container aside .profile-info img {
+#account-saved-courses .container aside .profile-info .image {
+  display: flex;
+  position: relative;
+}
+#account-saved-courses .container aside .profile-info .image .btn-circle {
+  position: absolute;
+  bottom: 0;
+  right: 4px;
+}
+#account-saved-courses .container aside .profile-info .image img {
   border-radius: 100%;
-  max-width: 6rem;
-  max-height: 6rem;
+  max-width: 7rem;
+  max-height: 7rem;
 }
 #account-saved-courses .container aside .profile-info h5 {
   margin-top: 15px;

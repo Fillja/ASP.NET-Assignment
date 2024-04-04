@@ -6,16 +6,19 @@ using Infrastructure.Models.Auth;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Configuration;
+using System.Diagnostics;
 using System.Security.Claims;
 
 namespace Infrastructure.Services;
 
-public class UserService(UserRepository userRepository, UserFactory userFactory, UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager)
+public class UserService(UserRepository userRepository, UserFactory userFactory, UserManager<UserEntity> userManager, SignInManager<UserEntity> signInManager, IConfiguration configuration)
 {
     private readonly UserRepository _userRepository = userRepository;
     private readonly UserFactory _userFactory = userFactory;
     private readonly UserManager<UserEntity> _userManager = userManager;
     private readonly SignInManager<UserEntity> _signInManager = signInManager;
+    private readonly IConfiguration _configuration = configuration;
 
     public async Task<ResponseResult> RegisterUserAsync(SignUpFormModel model)
     {
@@ -31,7 +34,7 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
                 if (responseResult.StatusCode == StatusCode.OK)
                 {
                     if (IsTeacher(userEntity.FirstName))
-                        userEntity.ImageUrl = "/images/boss-cat.jpg";
+                        userEntity.ImageUrl = "boss-cat.jpg";
 
                     var identityResult = await _userManager.CreateAsync(userEntity, model.Password);
 
@@ -46,7 +49,7 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
 
             return existResult;
         }
-        catch (Exception ex) 
+        catch (Exception ex)
         {
             return ResponseFactory.Error(ex.Message);
         }
@@ -78,7 +81,7 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
                 if (existResult.StatusCode == StatusCode.EXISTS)
                     return ResponseFactory.Exists("A user with that email already exists.");
             }
-            
+
             var responseResult = _userFactory.PopulateUserEntity(model, userEntity);
             var userToUpdate = (UserEntity)responseResult.ContentResult!;
 
@@ -100,7 +103,7 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
         {
             var existResult = await _userRepository.ExistsAsync(x => x.Email == userEntity.Email);
 
-            if(existResult.StatusCode == StatusCode.NOT_FOUND)
+            if (existResult.StatusCode == StatusCode.NOT_FOUND)
             {
                 var result = await _userManager.CreateAsync(userEntity);
                 if (result.Succeeded)
@@ -110,7 +113,7 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
                 }
             }
 
-            if(existResult.StatusCode == StatusCode.EXISTS)
+            if (existResult.StatusCode == StatusCode.EXISTS)
             {
                 var user = await _userManager.FindByEmailAsync(userEntity.Email!);
 
@@ -165,7 +168,35 @@ public class UserService(UserRepository userRepository, UserFactory userFactory,
         }
     }
 
-    public static bool IsTeacher (string firstName)
+    public async Task<bool> UploadUserProfileImageAsync(UserEntity userEntity, IFormFile file)
+    {
+        try
+        {
+            if (file != null && file.Length != 0)
+            {
+                var fileName = $"p_{userEntity.Id}_{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), _configuration["FileUploadPath"]!, fileName);
+
+                using var fs = new FileStream(filePath, FileMode.Create);
+                await file.CopyToAsync(fs);
+
+                userEntity.ImageUrl = fileName;
+                await _userManager.UpdateAsync(userEntity);
+
+                return true;
+            }
+
+            return false;
+        }
+
+        catch (Exception ex)
+        {
+            Debug.WriteLine(ex.Message);
+            return false;
+        }
+    }
+
+    public static bool IsTeacher(string firstName)
     {
         if (firstName == "Hans" || firstName == "Joakim" || firstName == "Tommy")
             return true;

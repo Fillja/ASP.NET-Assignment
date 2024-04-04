@@ -5,14 +5,16 @@
             
         <aside>
             <div class="profile-info">
-                @if (Model.BasicForm.ProfileImage != null)
-                {
-                    <img src="@Model.BasicForm.ProfileImage" alt="@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")" />
-                }
-                else
-                {
-                    <img src="/images/cat.jpg" alt="Cat"/>
-                }
+                <div class="image">
+                    @if (Model.BasicForm.ProfileImage != null)
+                    {
+                        <img src="~/images/uploads/@Model.BasicForm.ProfileImage" alt="@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")" />
+                    }
+                    <form enctype="multipart/form-data" method="post" asp-action="UploadImage" asp-controller="Account">
+                        <input id="fileUploader" type="file" name="file" hidden />
+                        <label for="fileUploader" class="btn-circle"><i class="fa-regular fa-refresh"></i></label>
+                    </form>
+                </div>
                 <h5>@($"{Model.BasicForm.FirstName} {Model.BasicForm.LastName}")</h5>
                 <p>@Model.BasicForm.Email</p>
             </div>
@@ -76,3 +78,4 @@
     </div>
 </section>
 @await Html.PartialAsync("_ValidationScriptPartial")
+@await Html.PartialAsync("_FileUploadScriptPartial")

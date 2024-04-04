@@ -8,7 +8,6 @@ using Newtonsoft.Json;
 using Infrastructure.Contexts;
 using Microsoft.EntityFrameworkCore;
 using System.Text;
-using static System.Net.WebRequestMethods;
 
 namespace Infrastructure.Services;
 

@@ -105,6 +105,25 @@
     }
 }
 
+.btn-circle {
+    border-radius: 100%;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 26px;
+    height: 26px;
+    background-color: var(--color-gray-300);
+    color: var(--color-black);
+    transition: all 0.25s ease-in-out;
+
+    &:hover {
+        text-decoration: none;
+        background: var(--color-gray-700);
+        color: var(--color-white);
+        cursor: pointer;
+    }
+}
+
 .btn-switch {
     display: flex;
     align-items: center;

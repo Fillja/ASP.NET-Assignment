@@ -206,4 +206,17 @@ public class AccountController(UserManager<UserEntity> userManager, SignInManage
     }
 
     #endregion
+
+    #region Upload Profileimage
+    public async Task<IActionResult> UploadImage(IFormFile file)
+    {
+        var user = await _userManager.GetUserAsync(User);
+        if (user != null)
+            await _userService.UploadUserProfileImageAsync(user, file);
+
+        string returnUrl = Request.Headers["Referer"].ToString();
+
+        return Redirect(returnUrl);
+    }
+    #endregion
 }

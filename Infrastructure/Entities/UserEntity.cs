@@ -12,7 +12,7 @@ public class UserEntity : IdentityUser
 
     public string? Bio {  get; set; }
 
-    public string? ImageUrl { get; set; }
+    public string? ImageUrl { get; set; } = "cat.jpg";
 
     public int? AddressId { get; set; }
 
